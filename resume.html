@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#2F53F5">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>Manoj Kumawat — Senior Backend Engineer</title>
+<meta name="description" content="Manoj Kumawat — Senior Backend Engineer. 5+ years building e-commerce and subscription systems on Node.js/TypeScript, GraphQL, and AWS. Security-minded by background.">
+<link rel="canonical" href="https://imkumawatmanoj.com/resume.html">
+<meta property="og:type" content="profile">
+<meta property="og:site_name" content="Manoj Kumawat">
+<meta property="og:title" content="Manoj Kumawat — Senior Backend Engineer">
+<meta property="og:description" content="5+ years building e-commerce and subscription systems on Node.js/TypeScript, GraphQL, and AWS.">
+<meta property="og:url" content="https://imkumawatmanoj.com/resume.html">
+<meta property="og:image" content="https://imkumawatmanoj.com/og.png?v=3">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Manoj Kumawat — Senior Backend Engineer. Node.js / TypeScript / GraphQL / AWS.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Manoj Kumawat — Senior Backend Engineer">
+<meta name="twitter:description" content="5+ years building e-commerce and subscription systems on Node.js/TypeScript, GraphQL, and AWS.">
+<meta name="twitter:image" content="https://imkumawatmanoj.com/og.png?v=3">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#ECEDEF;
+    --surface:#FFFFFF;
+    --ink:#17191D;
+    --muted:#6B7078;
+    --faint:#9AA0A6;
+    --faint-ink:#5B6068;
+    --accent:#2F53F5;
+    --line:#D9DBDF;
+    --ok:#1FA463;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:"Inter",system-ui,-apple-system,sans-serif;
+    -webkit-font-smoothing:antialiased;
+    line-height:1.55;
+    background-image:radial-gradient(circle at 1px 1px, rgba(23,25,29,.045) 1px, transparent 0);
+    background-size:26px 26px;
+    background-attachment:fixed;
+  }
+
+  /* top bar: home + download */
+  .topbar{
+    max-width:820px;
+    margin:0 auto;
+    padding:20px 28px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+  }
+  .topbar a{font-family:"JetBrains Mono",monospace;font-size:13px;text-decoration:none;color:var(--muted)}
+  .topbar a.home:hover{color:var(--ink)}
+  .btn-pdf{
+    display:inline-flex;align-items:center;gap:8px;
+    background:var(--accent);color:#fff !important;
+    padding:9px 15px;border-radius:8px;
+    font-weight:500;letter-spacing:.01em;
+    transition:transform .12s ease, background .12s ease;
+  }
+  .btn-pdf:hover{background:#2544d6;transform:translateY(-1px)}
+
+  .sheet{
+    max-width:820px;
+    margin:22px auto 60px;
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:48px 52px;
+    box-shadow:0 1px 2px rgba(23,25,29,.04), 0 8px 30px rgba(23,25,29,.05);
+  }
+
+  /* masthead */
+  .name{
+    font-family:"Bricolage Grotesque","Inter",sans-serif;
+    font-weight:700;
+    font-size:clamp(2.1rem,6vw,3rem);
+    letter-spacing:-.02em;
+    line-height:1;
+  }
+  .role{
+    font-size:1.05rem;
+    color:var(--muted);
+    margin-top:8px;
+  }
+  .contact{
+    font-family:"JetBrains Mono",monospace;
+    font-size:12.5px;
+    margin-top:16px;
+    display:flex;flex-wrap:wrap;gap:8px 14px;
+  }
+  .contact a{color:var(--accent);text-decoration:none}
+  .contact a:hover{text-decoration:underline}
+  .contact .sep{color:var(--line)}
+
+  /* metrics readout — the signature: career impact as a monitoring readout */
+  .readout{
+    font-family:"JetBrains Mono",monospace;
+    font-size:12.5px;
+    margin-top:22px;
+    padding:14px 16px;
+    background:#F3F4F6;
+    border:1px solid var(--line);
+    border-radius:10px;
+    display:flex;flex-wrap:wrap;gap:6px 20px;
+    align-items:center;
+  }
+  .readout .dot{width:8px;height:8px;border-radius:50%;background:var(--ok);flex:0 0 auto;margin-right:2px}
+  .readout .m{white-space:nowrap}
+  .readout .m b{color:var(--ink);font-weight:500}
+  .readout .m span{color:var(--muted)}
+
+  /* sections */
+  section{margin-top:34px}
+  .sec-head{
+    font-family:"JetBrains Mono",monospace;
+    font-size:12px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--faint-ink);
+    padding-bottom:8px;
+    border-bottom:1px solid var(--line);
+    margin-bottom:18px;
+  }
+  .summary{font-size:1rem;color:#33363B;max-width:66ch}
+  .summary b{color:var(--ink);font-weight:600}
+
+  /* experience timeline */
+  .entry{position:relative;padding-left:22px;padding-bottom:26px}
+  .entry:last-child{padding-bottom:0}
+  .entry::before{content:"";position:absolute;left:0;top:6px;bottom:-4px;width:2px;background:var(--line)}
+  .entry:last-child::before{bottom:8px}
+  .entry::after{content:"";position:absolute;left:-3px;top:6px;width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 3px var(--surface)}
+  .entry-top{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap}
+  .entry-org{font-weight:600;font-size:1.05rem}
+  .entry-role{color:var(--accent);font-weight:500}
+  .entry-meta{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--muted);white-space:nowrap}
+  .entry-sub{font-size:.9rem;color:var(--muted);margin-top:2px;font-style:italic}
+  ul.bullets{list-style:none;margin-top:10px}
+  ul.bullets li{position:relative;padding-left:16px;margin-top:7px;font-size:.94rem;color:#33363B}
+  ul.bullets li::before{content:"";position:absolute;left:0;top:9px;width:5px;height:5px;border-radius:1px;background:var(--faint)}
+  ul.bullets li b{color:var(--ink);font-weight:600}
+
+  /* project card */
+  .proj{border:1px solid var(--line);border-radius:12px;padding:20px 22px;background:#FCFCFD}
+  .proj-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+  .proj-name{font-weight:600;font-size:1.02rem}
+  .proj-name a{color:var(--accent);text-decoration:none;font-family:"JetBrains Mono",monospace;font-size:12px;font-weight:400}
+  .proj-stack{font-family:"JetBrains Mono",monospace;font-size:11.5px;color:var(--muted);margin-top:4px}
+
+  /* skills */
+  .skill-row{display:grid;grid-template-columns:170px 1fr;gap:8px 18px;padding:10px 0;border-bottom:1px solid #EDEEF0}
+  .skill-row:last-child{border-bottom:0}
+  .skill-key{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--muted);padding-top:2px}
+  .skill-val{font-size:.92rem;color:#33363B}
+
+  /* education */
+  .edu{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap}
+  .edu-school{font-weight:600}
+  .edu-deg{color:var(--muted);font-size:.94rem}
+  .edu-meta{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--muted);white-space:nowrap}
+
+  .foot{
+    font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--faint-ink);
+    margin-top:34px;padding-top:16px;border-top:1px solid var(--line);
+    display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
+  }
+  .foot a{color:var(--muted);text-decoration:none}
+  .foot a:hover{color:var(--ink)}
+  .foot .ok{color:var(--ok)}
+
+  @media (max-width:560px){
+    .sheet{padding:32px 22px;margin:16px 12px 40px;border-radius:14px}
+    .topbar{padding:16px 18px 0}
+    .skill-row{grid-template-columns:1fr;gap:2px}
+    .skill-key{padding-top:0}
+  }
+
+  /* print: clean paper output */
+  @media print{
+    body{background:#fff;background-image:none}
+    .topbar,.foot{display:none}
+    .sheet{max-width:none;margin:0;border:0;border-radius:0;box-shadow:none;padding:0}
+    .readout,.proj{background:#fff}
+    a{color:#000 !important;text-decoration:none}
+    .entry-role,.contact a,.proj-name a{color:#000 !important}
+    .entry::after{background:#000}
+  }
+</style>
+</head>
+<body>
+  <div class="topbar">
+    <a class="home" href="/">← imkumawatmanoj.com</a>
+    <a class="btn-pdf" href="/resume.pdf" download="Manoj_Kumawat_Resume.pdf">Download PDF</a>
+  </div>
+
+  <main class="sheet">
+    <header>
+      <h1 class="name">Manoj Kumawat</h1>
+      <div class="role">Senior Backend Engineer · Node.js / TypeScript · GraphQL · AWS</div>
+      <div class="contact">
+        <a href="mailto:me@imkumawatmanoj.com">me@imkumawatmanoj.com</a>
+        <span class="sep">·</span>
+        <a href="https://linkedin.com/in/imkumawat" target="_blank" rel="noopener">linkedin.com/in/imkumawat</a>
+        <span class="sep">·</span>
+        <a href="https://github.com/imkumawat" target="_blank" rel="noopener">github.com/imkumawat</a>
+      </div>
+      <div class="readout" aria-label="Impact at a glance">
+        <span class="dot" aria-hidden="true"></span>
+        <span class="m"><b>1.6M+</b> <span>users</span></span>
+        <span class="m"><b>400K+</b> <span>active subscriptions</span></span>
+        <span class="m"><b>500K+</b> <span>req/day</span></span>
+        <span class="m"><b>$150K+/mo</b> <span>payouts</span></span>
+        <span class="m"><b>&minus;50%</b> <span>cloud cost</span></span>
+      </div>
+    </header>
+
+    <section>
+      <div class="sec-head">Summary</div>
+      <p class="summary">Senior Backend Engineer, <b>5+ years</b> across product and security engineering — including 4+ years building e-commerce and subscription systems serving <b>1.6M+ users</b> and <b>400K+ active subscriptions</b>. Expertise in Node.js/TypeScript, <b>GraphQL (Apollo)</b>, REST API design, event-driven architecture, and AWS — led a full Shopify platform migration, cut cloud spend <b>~50%</b>, and run a payout pipeline processing <b>$150K+/month</b>. Cybersecurity background (OWASP Top 10, VAPT) — architect systems, code, and business logic <b>secure-by-design</b>: hardened authentication, scoped authorization, rate limiting, and query-complexity/abuse limits.</p>
+    </section>
+
+    <section>
+      <div class="sec-head">Experience</div>
+
+      <div class="entry">
+        <div class="entry-top">
+          <div>
+            <span class="entry-org">Springworks</span> — <span class="entry-role">Senior Backend Engineer</span>
+          </div>
+          <div class="entry-meta">Mar 2022 – Present · Remote</div>
+        </div>
+        <div class="entry-sub">Burst Oral Care — e-commerce &amp; subscription platform</div>
+        <ul class="bullets">
+          <li>Led a full custom-platform to Shopify migration for a <b>400K+ subscription</b>, <b>1.6M+ user</b> store — implemented complex ambassador discount logic (40K+ codes) as Shopify Functions and cut over with no disruption to recurring billing.</li>
+          <li><b>Sole DevOps owner</b> for the platform — cut AWS spend <b>~50%</b> (Aurora/RDS tuning, ECS right-sizing, CloudWatch retention/log-ingestion tuning, S3/Glacier lifecycle) and replaced a $2K/month hosted BI tool (Periscope/Sisense) with self-hosted Redash on EC2, eliminating <b>~$24K/year</b> in licensing.</li>
+          <li>Designed and built the ambassador payout system from scratch with idempotent Stripe transfers and automated reconciliation — a robust design that prevents duplicate transfers under retries and failures, across <b>$150K+/month</b>.</li>
+          <li>Built and operated REST APIs across subscriptions, payments, and orders (<b>500K+ requests/day</b>), holding p95 latency under production peaks via connection pooling, indexing, and query tuning on high-concurrency MySQL.</li>
+          <li>Architected event-driven sync on Shopify's GraphQL Admin API and webhooks, mirroring customers, orders, products, and discounts into internal systems for near-real-time analytics and automation.</li>
+          <li>Implemented Shopify Functions (cart validation, purchase restrictions, delivery customization, custom discounts), retiring paid third-party apps; built custom B2B/wholesale recurring billing Shopify could not natively support.</li>
+        </ul>
+      </div>
+
+      <div class="entry">
+        <div class="entry-top">
+          <div>
+            <span class="entry-org">Truminds Software Systems</span> — <span class="entry-role">Penetration Tester</span>
+          </div>
+          <div class="entry-meta">Jul 2020 – Feb 2022 · Gurgaon, India</div>
+        </div>
+        <div class="entry-sub">Web Application Security</div>
+        <ul class="bullets">
+          <li>Ran manual and automated security testing with Burp Suite, OWASP ZAP, and sqlmap against web applications and APIs, uncovering OWASP Top 10 vulnerabilities (injection, broken access control, XSS) and driving them to remediation with engineering teams.</li>
+          <li>Integrated SonarCloud static analysis (SAST) into CI pipelines across repositories, shifting vulnerability detection left and catching insecure code before merge.</li>
+          <li>Partnered with developers on secure-coding reviews and threat-aware design, reducing recurring vulnerability classes across the codebase.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="sec-head">Projects</div>
+      <div class="proj">
+        <div class="proj-top">
+          <div class="proj-name">blue-node — backend reference implementation &nbsp; <a href="https://github.com/imkumawat/blue-node" target="_blank" rel="noopener">github.com/imkumawat/blue-node</a></div>
+          <div class="entry-meta">2026</div>
+        </div>
+        <div class="proj-stack">Node.js · TypeScript · Express 5 · Apollo GraphQL · Postgres · MongoDB · Redis · AWS</div>
+        <ul class="bullets">
+          <li>Modular monolith in TypeScript (ESM) on Express 5 — per-module REST + GraphQL (Apollo) adapters over Postgres (Drizzle), MongoDB, and Redis, plus an MQTT broker client as a resilient shared transport; BullMQ + standalone SQS worker for background jobs.</li>
+          <li>Per-request <b>DataLoader</b> batching to eliminate resolver <b>N+1</b> (order-preserving batch queries behind a request-scoped context), with query-complexity limits.</li>
+          <li>Directive-driven GraphQL security at the schema level — <b>@authenticated</b>, <b>@requireScope</b>, <b>@rateLimit</b>, and alias-abuse protection.</li>
+          <li>Unified <b>JWT</b> auth core for REST + Apollo — access/refresh-token rotation &amp; reuse detection, scoped permissions, and per-IP/account lockout.</li>
+          <li>Multi-instance real-time layer — WebSocket transport with a connection manager and Redis Pub/Sub fan-out (rooms) across horizontally-scaled instances; graceful shutdown drains in-flight requests and jobs on SIGTERM; pino logging; CI (GitHub Actions + Azure DevOps) with typecheck, lint, Vitest.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="sec-head">Skills</div>
+      <div class="skill-row"><div class="skill-key">Languages</div><div class="skill-val">TypeScript, JavaScript (Node.js, ES6+), Python</div></div>
+      <div class="skill-row"><div class="skill-key">Backend &amp; API</div><div class="skill-val">GraphQL (Apollo), DataLoader, REST, WebSockets, Express 5, JWT</div></div>
+      <div class="skill-row"><div class="skill-key">Data</div><div class="skill-val">PostgreSQL, MySQL, MongoDB, Redis</div></div>
+      <div class="skill-row"><div class="skill-key">Messaging &amp; Events</div><div class="skill-val">AWS SQS/SNS/EventBridge, BullMQ, MQTT, event-driven architecture</div></div>
+      <div class="skill-row"><div class="skill-key">Cloud &amp; DevOps</div><div class="skill-val">AWS (ECS/Fargate, Lambda, Aurora/RDS, ElastiCache, S3/Glacier, API Gateway, CloudWatch, Secrets Manager, IAM), Docker, CI/CD (GitHub Actions, Azure DevOps), Cloudflare</div></div>
+      <div class="skill-row"><div class="skill-key">Observability</div><div class="skill-val">Sentry, CloudWatch, OpenSearch, structured logging (pino)</div></div>
+      <div class="skill-row"><div class="skill-key">Security</div><div class="skill-val">OWASP Top 10, VAPT (Burp Suite, OWASP ZAP, Nessus, sqlmap, Metasploit), SonarCloud (SAST), secure coding, refresh-token reuse detection, rate limiting</div></div>
+      <div class="skill-row"><div class="skill-key">Frontend</div><div class="skill-val">Next.js, React</div></div>
+    </section>
+
+    <section>
+      <div class="sec-head">Education</div>
+      <div class="edu">
+        <div>
+          <div class="edu-school">Lovely Professional University</div>
+          <div class="edu-deg">B.Tech, Computer Science &amp; Engineering</div>
+        </div>
+        <div class="edu-meta">Jul 2016 – Jun 2020 · Punjab, India</div>
+      </div>
+    </section>
+
+    <div class="foot">
+      <span><span class="ok">●</span> 200 OK — resume served over HTTPS</span>
+      <a href="/">imkumawatmanoj.com</a>
+    </div>
+  </main>
+</body>
+</html>
