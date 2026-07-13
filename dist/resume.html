@@ -155,6 +155,7 @@
 
   /* project card */
   .proj{border:1px solid var(--line);border-radius:12px;padding:20px 22px;background:#FCFCFD}
+  .proj + .proj{margin-top:16px}
   .proj-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
   .proj-name{font-weight:600;font-size:1.02rem}
   .proj-name a{color:var(--accent);text-decoration:none;font-family:"JetBrains Mono",monospace;font-size:12px;font-weight:400}
@@ -171,6 +172,15 @@
   .edu-school{font-weight:600}
   .edu-deg{color:var(--muted);font-size:.94rem}
   .edu-meta{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--muted);white-space:nowrap}
+
+  /* home lab — terminal-flavored note under the readout theme */
+  .lab-note{
+    font-family:"JetBrains Mono",monospace;
+    font-size:12px;
+    color:var(--faint-ink);
+    margin-bottom:16px;
+  }
+  .lab-note .prompt{color:var(--accent)}
 
   .foot{
     font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--faint-ink);
@@ -245,10 +255,12 @@
         <div class="entry-sub">Burst Oral Care — e-commerce &amp; subscription platform</div>
         <ul class="bullets">
           <li>Led a full custom-platform to Shopify migration for a <b>400K+ subscription</b>, <b>1.6M+ user</b> store — implemented complex ambassador discount logic (40K+ codes) as Shopify Functions and cut over with no disruption to recurring billing.</li>
-          <li><b>Sole DevOps owner</b> for the platform — cut AWS spend <b>~50%</b> (Aurora/RDS tuning, ECS right-sizing, CloudWatch retention/log-ingestion tuning, S3/Glacier lifecycle) and replaced a $2K/month hosted BI tool (Periscope/Sisense) with self-hosted Redash on EC2, eliminating <b>~$24K/year</b> in licensing.</li>
+          <li><b>Sole DevOps owner</b> for the platform — cut AWS spend <b>~50%</b> (Aurora/RDS tuning, ECS/Kubernetes right-sizing, CloudWatch retention/log-ingestion tuning, S3/Glacier lifecycle) and replaced a $2K/month hosted BI tool (Periscope/Sisense) with self-hosted Redash on EC2, eliminating <b>~$24K/year</b> in licensing.</li>
           <li>Designed and built the ambassador payout system from scratch with idempotent Stripe transfers and automated reconciliation — a robust design that prevents duplicate transfers under retries and failures, across <b>$150K+/month</b>.</li>
-          <li>Built and operated REST APIs across subscriptions, payments, and orders (<b>500K+ requests/day</b>), holding p95 latency under production peaks via connection pooling, indexing, and query tuning on high-concurrency MySQL.</li>
+          <li>Optimized a high-load analytics pipeline by rewriting correlated subqueries into indexed JOINs on a <b>17M+ row</b> activity table, cutting database load <b>~91%</b> — diagnosed through slow-query analysis and composite index design.</li>
+          <li>Built and operated REST APIs across subscriptions, payments, and orders (<b>500K+ requests/day</b>) on Aurora MySQL (<b>12M+ row</b> order tables), holding p95 latency under production peaks via connection pooling, indexing, and query tuning.</li>
           <li>Architected event-driven sync on Shopify's GraphQL Admin API and webhooks, mirroring customers, orders, products, and discounts into internal systems for near-real-time analytics and automation.</li>
+          <li>Hardened the platform edge with <b>Cloudflare</b> — WAF rules, rate limiting, and Turnstile bot protection on abuse-prone endpoints, plus Workers and Pages for edge logic and static delivery; offloaded traffic from origin and reduced attack surface.</li>
           <li>Implemented Shopify Functions (cart validation, purchase restrictions, delivery customization, custom discounts), retiring paid third-party apps; built custom B2B/wholesale recurring billing Shopify could not natively support.</li>
         </ul>
       </div>
@@ -256,15 +268,15 @@
       <div class="entry">
         <div class="entry-top">
           <div>
-            <span class="entry-org">Truminds Software Systems</span> — <span class="entry-role">Penetration Tester</span>
+            <span class="entry-org">Truminds Software Systems</span> — <span class="entry-role">Security Engineer</span>
           </div>
           <div class="entry-meta">Jul 2020 – Feb 2022 · Gurgaon, India</div>
         </div>
-        <div class="entry-sub">Web Application Security</div>
+        <div class="entry-sub">Penetration Testing &amp; VAPT</div>
         <ul class="bullets">
-          <li>Ran manual and automated security testing with Burp Suite, OWASP ZAP, and sqlmap against web applications and APIs, uncovering OWASP Top 10 vulnerabilities (injection, broken access control, XSS) and driving them to remediation with engineering teams.</li>
-          <li>Integrated SonarCloud static analysis (SAST) into CI pipelines across repositories, shifting vulnerability detection left and catching insecure code before merge.</li>
-          <li>Partnered with developers on secure-coding reviews and threat-aware design, reducing recurring vulnerability classes across the codebase.</li>
+          <li>Performed end-to-end <b>VAPT</b> (vulnerability assessment &amp; penetration testing) on web applications, REST APIs, and network infrastructure — combining manual exploitation with Burp Suite, OWASP ZAP, sqlmap, Nessus, and Metasploit to uncover and exploit OWASP Top 10 flaws (SQL injection, broken access control, XSS, IDOR, auth bypass).</li>
+          <li>Chained real-world attack paths — from injection and broken authentication to privilege escalation — and delivered detailed exploit walkthroughs, risk ratings (<b>CVSS</b>), and remediation guidance that engineering teams shipped to closure.</li>
+          <li>Drove <b>secure-by-design</b> practices across teams — threat modeling, secure-coding reviews, and shift-left security in CI — eliminating recurring vulnerability classes and building the security instincts I now apply as a backend engineer.</li>
         </ul>
       </div>
     </section>
@@ -278,7 +290,7 @@
         </div>
         <div class="proj-stack">Node.js · TypeScript · Express 5 · Apollo GraphQL · Postgres · MongoDB · Redis · AWS</div>
         <ul class="bullets">
-          <li>Modular monolith in TypeScript (ESM) on Express 5 — per-module REST + GraphQL (Apollo) adapters over Postgres (Drizzle), MongoDB, and Redis, plus an MQTT broker client as a resilient shared transport; BullMQ + standalone SQS worker for background jobs.</li>
+          <li>Modular monolith in TypeScript (ESM) on Express 5 — per-module REST + GraphQL (Apollo) adapters over Postgres (Drizzle), MongoDB, and Redis, plus an MQTT 5 broker client as a resilient shared transport; BullMQ + standalone SQS worker for background jobs.</li>
           <li>Per-request <b>DataLoader</b> batching to eliminate resolver <b>N+1</b> (order-preserving batch queries behind a request-scoped context), with query-complexity limits.</li>
           <li>Directive-driven GraphQL security at the schema level — <b>@authenticated</b>, <b>@requireScope</b>, <b>@rateLimit</b>, and alias-abuse protection.</li>
           <li>Unified <b>JWT</b> auth core for REST + Apollo — access/refresh-token rotation &amp; reuse detection, scoped permissions, and per-IP/account lockout.</li>
@@ -288,12 +300,29 @@
     </section>
 
     <section>
+      <div class="sec-head">Home Lab &amp; Self-Hosted Infra</div>
+      <div class="lab-note"><span class="prompt">manoj@lab:~$</span> uptime — a running playground where I break things on purpose</div>
+      <div class="proj">
+        <div class="proj-top">
+          <div class="proj-name">Self-hosted home lab &nbsp; <a href="https://api.imkumawatmanoj.com" target="_blank" rel="noopener">api.imkumawatmanoj.com</a></div>
+          <div class="entry-meta">Ongoing</div>
+        </div>
+        <div class="proj-stack">Ubuntu Server · Docker · systemd · Cloudflare Tunnel · Workers · R2 · nginx</div>
+        <ul class="bullets">
+          <li>Run a bare-metal Ubuntu Server home lab exposing services publicly through a <b>Cloudflare Tunnel</b> — bypassing ISP CGNAT (no public IP, no port forwarding) with hostname-based routing (<b>api</b> and <b>app</b> subdomains) to multiple backend services on a single tunnel.</li>
+          <li>Operate a real Node.js API (Postgres, Redis, Mongo) behind the tunnel as <b>systemd</b> services with auto-restart and graceful recovery; deliberately inject failures to study the full failure chain (edge → tunnel → origin → dependencies) and its error signatures.</li>
+          <li>Serve static assets and user files from <b>Cloudflare R2</b> over a custom CDN domain (free egress, edge caching), and use <b>Workers</b> with KV and Cron Triggers for edge logic, scheduled health checks, and alerting.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
       <div class="sec-head">Skills</div>
       <div class="skill-row"><div class="skill-key">Languages</div><div class="skill-val">TypeScript, JavaScript (Node.js, ES6+), Python</div></div>
       <div class="skill-row"><div class="skill-key">Backend &amp; API</div><div class="skill-val">GraphQL (Apollo), DataLoader, REST, WebSockets, Express 5, JWT</div></div>
-      <div class="skill-row"><div class="skill-key">Data</div><div class="skill-val">PostgreSQL, MySQL, MongoDB, Redis</div></div>
-      <div class="skill-row"><div class="skill-key">Messaging &amp; Events</div><div class="skill-val">AWS SQS/SNS/EventBridge, BullMQ, MQTT, event-driven architecture</div></div>
-      <div class="skill-row"><div class="skill-key">Cloud &amp; DevOps</div><div class="skill-val">AWS (ECS/Fargate, Lambda, Aurora/RDS, ElastiCache, S3/Glacier, API Gateway, CloudWatch, Secrets Manager, IAM), Docker, CI/CD (GitHub Actions, Azure DevOps), Cloudflare</div></div>
+      <div class="skill-row"><div class="skill-key">Data</div><div class="skill-val">PostgreSQL, MySQL (Aurora), MongoDB, Redis</div></div>
+      <div class="skill-row"><div class="skill-key">Messaging &amp; Events</div><div class="skill-val">AWS SQS/SNS/EventBridge, BullMQ, MQTT 5, event-driven architecture</div></div>
+      <div class="skill-row"><div class="skill-key">Cloud &amp; DevOps</div><div class="skill-val">AWS (ECS/Fargate, Lambda, Aurora/RDS, ElastiCache, S3/Glacier, API Gateway, CloudWatch, Secrets Manager, IAM), Kubernetes, Docker, CI/CD (GitHub Actions, Azure DevOps), Cloudflare (Workers, Pages, R2, WAF, Turnstile, DNS)</div></div>
       <div class="skill-row"><div class="skill-key">Observability</div><div class="skill-val">Sentry, CloudWatch, OpenSearch, structured logging (pino)</div></div>
       <div class="skill-row"><div class="skill-key">Security</div><div class="skill-val">OWASP Top 10, VAPT (Burp Suite, OWASP ZAP, Nessus, sqlmap, Metasploit), SonarCloud (SAST), secure coding, refresh-token reuse detection, rate limiting</div></div>
       <div class="skill-row"><div class="skill-key">Frontend</div><div class="skill-val">Next.js, React</div></div>
