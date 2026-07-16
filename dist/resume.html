@@ -262,6 +262,7 @@
           <li>Architected event-driven sync on Shopify's GraphQL Admin API and webhooks, mirroring customers, orders, products, and discounts into internal systems for near-real-time analytics and automation.</li>
           <li>Hardened the platform edge with <b>Cloudflare</b> — WAF rules, rate limiting, and Turnstile bot protection on abuse-prone endpoints, plus Workers and Pages for edge logic and static delivery; offloaded traffic from origin and reduced attack surface.</li>
           <li>Implemented Shopify Functions (cart validation, purchase restrictions, delivery customization, custom discounts), retiring paid third-party apps; built custom B2B/wholesale recurring billing Shopify could not natively support.</li>
+          <li>Built custom <b>MCP (Model Context Protocol)</b> servers and connectors in TypeScript exposing internal systems (production database, Shopify, AWS) as structured, read-scoped tools — enabling safe AI-assisted operations and investigation over production data without direct credential exposure.</li>
         </ul>
       </div>
 
@@ -322,9 +323,10 @@
       <div class="skill-row"><div class="skill-key">Backend &amp; API</div><div class="skill-val">GraphQL (Apollo), DataLoader, REST, WebSockets, Express 5, JWT</div></div>
       <div class="skill-row"><div class="skill-key">Data</div><div class="skill-val">PostgreSQL, MySQL (Aurora), MongoDB, Redis</div></div>
       <div class="skill-row"><div class="skill-key">Messaging &amp; Events</div><div class="skill-val">AWS SQS/SNS/EventBridge, BullMQ, MQTT 5, event-driven architecture</div></div>
-      <div class="skill-row"><div class="skill-key">Cloud &amp; DevOps</div><div class="skill-val">AWS (ECS/Fargate, Lambda, Aurora/RDS, ElastiCache, S3/Glacier, API Gateway, CloudWatch, Secrets Manager, IAM), Kubernetes, Docker, CI/CD (GitHub Actions, Azure DevOps), Cloudflare (Workers, Pages, R2, WAF, Turnstile, DNS)</div></div>
+      <div class="skill-row"><div class="skill-key">Cloud &amp; DevOps</div><div class="skill-val">AWS (ECS/Fargate, EKS, Lambda, Aurora/RDS, ElastiCache, S3/Glacier, API Gateway, CloudWatch, Secrets Manager, IAM), Azure (Functions, Container Apps, Blob Storage, Front Door), Kubernetes, Docker, CI/CD (GitHub Actions, Azure DevOps), Cloudflare (Workers, Pages, R2, WAF, Turnstile, DNS)</div></div>
       <div class="skill-row"><div class="skill-key">Observability</div><div class="skill-val">Sentry, CloudWatch, OpenSearch, structured logging (pino)</div></div>
       <div class="skill-row"><div class="skill-key">Security</div><div class="skill-val">OWASP Top 10, VAPT (Burp Suite, OWASP ZAP, Nessus, sqlmap, Metasploit), SonarCloud (SAST), secure coding, refresh-token reuse detection, rate limiting</div></div>
+      <div class="skill-row"><div class="skill-key">AI &amp; LLM Tooling</div><div class="skill-val">Model Context Protocol (MCP) — custom servers &amp; connectors, AI-assisted development, prompt engineering</div></div>
       <div class="skill-row"><div class="skill-key">Frontend</div><div class="skill-val">Next.js, React</div></div>
     </section>
 
