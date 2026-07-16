@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <!--
+      Source template for dist/og.png (1200x630 Open Graph card).
+      NOT deployed — only dist/ is served. Edit here, then re-render to dist/og.png:
+        msedge --headless=new --disable-gpu --window-size=1200,630 \
+               --screenshot="dist/og.png" --virtual-time-budget=5000 \
+               "file:///<abs-path>/og-template.html"
+    -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #ecedef;
+        --surface: #ffffff;
+        --ink: #17191d;
+        --muted: #5b6068;
+        --faint: #9aa0a6;
+        --accent: #2f53f5;
+        --line: #d6d8dc;
+        --ok: #1fa463;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      .og {
+        width: 1200px;
+        height: 630px;
+        overflow: hidden;
+        background: var(--bg);
+        background-image: radial-gradient(
+          circle at 1px 1px,
+          rgba(23, 25, 29, 0.05) 1px,
+          transparent 0
+        );
+        background-size: 26px 26px;
+        padding: 66px 92px 72px;
+        font-family: "Inter", system-ui, -apple-system, sans-serif;
+        color: var(--ink);
+        -webkit-font-smoothing: antialiased;
+        display: flex;
+        flex-direction: column;
+      }
+      .top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 20px;
+        color: var(--muted);
+      }
+      .dom {
+        letter-spacing: 0.06em;
+        color: #7f858c;
+      }
+      .avail {
+        display: inline-flex;
+        align-items: center;
+        gap: 11px;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        padding: 13px 22px;
+        border-radius: 999px;
+        color: var(--ink);
+        font-size: 20px;
+        white-space: nowrap;
+      }
+      .avail .d {
+        width: 11px;
+        height: 11px;
+        border-radius: 50%;
+        background: var(--ok);
+        flex: 0 0 auto;
+      }
+      .name {
+        font-family: "Bricolage Grotesque", "Inter", sans-serif;
+        font-weight: 700;
+        font-size: 96px;
+        line-height: 0.96;
+        letter-spacing: -0.022em;
+        margin-top: 60px;
+      }
+      .name .dot {
+        color: var(--accent);
+      }
+      .role {
+        font-size: 34px;
+        font-weight: 500;
+        margin-top: 22px;
+      }
+      .tech {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 22px;
+        line-height: 1.4;
+        color: var(--accent);
+        letter-spacing: 0.01em;
+        margin-top: 18px;
+        white-space: nowrap;
+      }
+      .stats {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 25px;
+        color: var(--muted);
+        margin-top: 44px;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+      .stats + .stats {
+        margin-top: 22px;
+      }
+      .stats b {
+        color: var(--ink);
+        font-weight: 500;
+      }
+      .sep {
+        color: var(--faint);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="og">
+      <div class="top">
+        <span class="dom">imkumawatmanoj.com</span>
+        <span class="avail"
+          ><span class="d"></span>Open to senior backend roles</span
+        >
+      </div>
+
+      <div class="name">Manoj Kumawat<span class="dot">.</span></div>
+      <div class="role">Senior Backend Engineer</div>
+      <div class="tech">
+        Node.js · TypeScript · GraphQL · AWS · Azure · Cloudflare · Cybersecurity
+      </div>
+
+      <div class="stats">
+        <span><b>1.6M+</b> users</span>
+        <span class="sep">·</span>
+        <span><b>400K+</b> subscriptions</span>
+        <span class="sep">·</span>
+        <span><b>500K+</b> req/day</span>
+      </div>
+      <div class="stats">
+        <span><b>&minus;50%</b> cloud cost</span>
+      </div>
+    </div>
+  </body>
+</html>
