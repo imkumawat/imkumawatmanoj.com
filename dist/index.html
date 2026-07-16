@@ -209,7 +209,7 @@
         display: flex;
         align-items: flex-start;
         width: 100%;
-        max-width: 560px;
+        max-width: 620px;
       }
       .node {
         display: flex;
@@ -242,6 +242,12 @@
       }
       .node.gql .chip::after {
         background: var(--accent);
+      }
+      .node.cf .chip {
+        border-color: #f6821f;
+      }
+      .node.cf .chip::after {
+        background: #f6821f;
       }
       .node .lbl {
         font-family: "JetBrains Mono", monospace;
@@ -286,14 +292,17 @@
           opacity: 0;
         }
       }
-      .seg:nth-of-type(2) .req {
-        animation-delay: 0.55s;
-      }
       .seg:nth-of-type(4) .req {
-        animation-delay: 1.1s;
+        animation-delay: 0.5s;
       }
       .seg:nth-of-type(6) .req {
-        animation-delay: 1.65s;
+        animation-delay: 1s;
+      }
+      .seg:nth-of-type(8) .req {
+        animation-delay: 1.5s;
+      }
+      .seg:nth-of-type(10) .req {
+        animation-delay: 2s;
       }
       .pipe-cap {
         font-family: "JetBrains Mono", monospace;
@@ -603,17 +612,17 @@
           grid-template-columns: repeat(2, 1fr);
         }
         .node {
-          min-width: 40px;
+          min-width: 34px;
         }
         .node .lbl {
-          font-size: 9.5px;
+          font-size: 9px;
         }
         .node .chip {
           width: 15px;
           height: 15px;
         }
         .seg {
-          min-width: 12px;
+          min-width: 10px;
           margin-top: 6.5px;
         }
         .sec-head {
@@ -686,12 +695,17 @@
         <div class="pipe" aria-hidden="true">
           <div class="node">
             <div class="chip"></div>
-            <div class="lbl">client</div>
+            <div class="lbl">Client</div>
+          </div>
+          <div class="seg"><span class="req"></span></div>
+          <div class="node cf">
+            <div class="chip"></div>
+            <div class="lbl">Cloudflare</div>
           </div>
           <div class="seg"><span class="req"></span></div>
           <div class="node gql">
             <div class="chip"></div>
-            <div class="lbl">GraphQL</div>
+            <div class="lbl">Origin</div>
           </div>
           <div class="seg"><span class="req"></span></div>
           <div class="node">
@@ -701,7 +715,7 @@
           <div class="seg"><span class="req"></span></div>
           <div class="node">
             <div class="chip"></div>
-            <div class="lbl">worker</div>
+            <div class="lbl">Worker</div>
           </div>
           <div class="seg"><span class="req"></span></div>
           <div class="node">
@@ -709,7 +723,7 @@
             <div class="lbl">Aurora</div>
           </div>
         </div>
-        <div class="pipe-cap">// requests flowing through the pipeline</div>
+        <div class="pipe-cap">// requests flowing through the edge → pipeline</div>
       </div>
 
       <div class="sec-head">Selected work</div>
