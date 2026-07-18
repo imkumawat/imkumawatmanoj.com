@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <!--
+      Source template for LinkedIn profile cover (1584x396).
+      Content sits right-aligned — LinkedIn profile photo overlaps the bottom-left area.
+      Render:
+        msedge --headless=new --disable-gpu --window-size=1584,396 \
+               --screenshot="linkedin-cover.png" --virtual-time-budget=5000 \
+               "file:///<abs-path>/linkedin-cover-template.html"
+    -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #ecedef;
+        --surface: #ffffff;
+        --ink: #17191d;
+        --muted: #5b6068;
+        --faint: #9aa0a6;
+        --accent: #2f53f5;
+        --line: #d6d8dc;
+        --ok: #1fa463;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      .cover {
+        position: relative;
+        width: 1584px;
+        height: 396px;
+        overflow: hidden;
+        background: var(--bg);
+        background-image: radial-gradient(
+          circle at 1px 1px,
+          rgba(23, 25, 29, 0.05) 1px,
+          transparent 0
+        );
+        background-size: 26px 26px;
+        font-family: "Inter", system-ui, sans-serif;
+        color: var(--ink);
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .avail {
+        position: absolute;
+        top: 42px;
+        left: 84px;
+        display: inline-flex;
+        align-items: center;
+        gap: 11px;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 12px 22px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 19px;
+        color: var(--ink);
+        white-space: nowrap;
+      }
+      .avail .d {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--ok);
+        flex: 0 0 auto;
+      }
+
+      .content {
+        position: absolute;
+        top: 44px;
+        right: 84px;
+        text-align: right;
+      }
+      .headline {
+        font-family: "Bricolage Grotesque", "Inter", sans-serif;
+        font-weight: 700;
+        font-size: 62px;
+        line-height: 1;
+        letter-spacing: -0.022em;
+      }
+      .headline .dot {
+        color: var(--accent);
+      }
+      .tech {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 25px;
+        color: var(--accent);
+        letter-spacing: 0.01em;
+        margin-top: 20px;
+      }
+      .tech .sep {
+        color: #8b9be9;
+      }
+      .stats {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 20px;
+        color: var(--muted);
+        margin-top: 16px;
+      }
+      .stats b {
+        color: var(--ink);
+        font-weight: 700;
+      }
+      .stats .sep {
+        color: var(--faint);
+      }
+      .domain {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 19px;
+        letter-spacing: 0.04em;
+        color: var(--faint);
+        margin-top: 14px;
+      }
+      /* ---------- pipeline (og style, cover scale) ---------- */
+      .pipe {
+        display: flex;
+        align-items: flex-start;
+        width: 700px;
+        margin-top: 22px;
+        margin-left: auto; /* right-align within content column */
+      }
+      .node {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        flex: 0 0 auto;
+        min-width: 52px;
+      }
+      .node .chip {
+        width: 22px;
+        height: 22px;
+        border-radius: 6px;
+        background: var(--surface);
+        border: 2px solid var(--line);
+        position: relative;
+      }
+      .node .chip::after {
+        content: "";
+        position: absolute;
+        width: 7px;
+        height: 7px;
+        border-radius: 2px;
+        background: var(--faint);
+        inset: 0;
+        margin: auto;
+      }
+      .node.gql .chip { border-color: var(--accent); }
+      .node.gql .chip::after { background: var(--accent); }
+      .node.cf .chip { border-color: #f6821f; }
+      .node.cf .chip::after { background: #f6821f; }
+      .node .lbl {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 13px;
+        color: var(--muted);
+        white-space: nowrap;
+      }
+      .seg {
+        flex: 1 1 auto;
+        min-width: 22px;
+        height: 2.5px;
+        background: var(--line);
+        margin-top: 9.75px;
+        position: relative;
+        border-radius: 3px;
+      }
+      .seg .req {
+        position: absolute;
+        top: 50%;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--accent);
+        transform: translate(-50%, -50%);
+        box-shadow: 0 0 10px 1.5px rgba(47, 83, 245, 0.55);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="cover">
+      <span class="avail"><span class="d"></span>Open to senior backend roles</span>
+
+      <div class="content">
+        <div class="headline">Backend that stays up<span class="dot">.</span></div>
+        <div class="tech">
+          Node.js <span class="sep">·</span> TypeScript <span class="sep">·</span>
+          GraphQL <span class="sep">·</span> AWS <span class="sep">·</span>
+          Azure <span class="sep">·</span> Cloudflare <span class="sep">·</span>
+          Cybersecurity
+        </div>
+        <div class="pipe" aria-hidden="true">
+          <div class="node">
+            <div class="chip"></div>
+            <div class="lbl">Client</div>
+          </div>
+          <div class="seg"><span class="req" style="left: 42%"></span></div>
+          <div class="node cf">
+            <div class="chip"></div>
+            <div class="lbl">Cloudflare</div>
+          </div>
+          <div class="seg"><span class="req" style="left: 63%"></span></div>
+          <div class="node gql">
+            <div class="chip"></div>
+            <div class="lbl">Origin</div>
+          </div>
+          <div class="seg"><span class="req" style="left: 28%"></span></div>
+          <div class="node">
+            <div class="chip"></div>
+            <div class="lbl">Queue</div>
+          </div>
+          <div class="seg"><span class="req" style="left: 71%"></span></div>
+          <div class="node">
+            <div class="chip"></div>
+            <div class="lbl">Worker</div>
+          </div>
+          <div class="seg"><span class="req" style="left: 52%"></span></div>
+          <div class="node">
+            <div class="chip"></div>
+            <div class="lbl">Aurora</div>
+          </div>
+        </div>
+
+        <div class="stats">
+          <b>1.6M+</b> users <span class="sep">·</span>
+          <b>400K+</b> subscriptions <span class="sep">·</span>
+          <b>500K+</b> req/day <span class="sep">·</span>
+          <b>$150K+</b>/mo payouts <span class="sep">·</span>
+          <b>-50%</b> cloud cost
+        </div>
+        <div class="domain">imkumawatmanoj.com</div>
+      </div>
+    </div>
+  </body>
+</html>
