@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <!--
+      Source template for imkumawatmanoj_wallpaper.png (1920x1080 desktop wallpaper).
+      Render:
+        msedge --headless=new --disable-gpu --window-size=1920,1080 \
+               --screenshot="imkumawatmanoj_wallpaper.png" --virtual-time-budget=5000 \
+               "file:///<abs-path>/wallpaper-template.html"
+    -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #ecedef;
+        --surface: #ffffff;
+        --ink: #17191d;
+        --muted: #5b6068;
+        --faint: #9aa0a6;
+        --accent: #2f53f5;
+        --line: #d6d8dc;
+        --ok: #1fa463;
+        --ok-bg: #e2f2e9;
+        --ok-line: #b9dfc9;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      .wall {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: var(--bg);
+        background-image: radial-gradient(
+          circle at 1px 1px,
+          rgba(23, 25, 29, 0.05) 1px,
+          transparent 0
+        );
+        background-size: 26px 26px;
+        font-family: "Inter", system-ui, sans-serif;
+        color: var(--ink);
+        -webkit-font-smoothing: antialiased;
+      }
+      /* soft glow behind the center */
+      .wall::before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 34%;
+        width: 1100px;
+        height: 560px;
+        transform: translate(-50%, -50%);
+        background: radial-gradient(
+          ellipse at center,
+          rgba(255, 255, 255, 0.85) 0%,
+          rgba(255, 255, 255, 0) 65%
+        );
+        pointer-events: none;
+      }
+
+      /* ---------- top bar ---------- */
+      .prompt {
+        position: absolute;
+        top: 72px;
+        left: 96px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 21px;
+        color: var(--ink);
+      }
+      .prompt b {
+        font-weight: 700;
+      }
+      .prompt .tilde {
+        color: var(--faint);
+      }
+      .prompt .dollar {
+        color: var(--accent);
+      }
+      .prompt .cmd {
+        color: #33363b;
+      }
+      .status-pill {
+        position: absolute;
+        top: 62px;
+        right: 96px;
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 20px;
+        letter-spacing: 0.06em;
+        color: #17734a;
+        background: var(--ok-bg);
+        border: 1px solid var(--ok-line);
+        border-radius: 999px;
+        padding: 14px 26px;
+      }
+      .status-pill .d {
+        width: 11px;
+        height: 11px;
+        border-radius: 50%;
+        background: var(--ok);
+        flex: 0 0 auto;
+      }
+
+      /* ---------- hero ---------- */
+      .hero {
+        position: absolute;
+        top: 285px;
+        left: 0;
+        right: 0;
+        text-align: center;
+      }
+      .name {
+        font-family: "Bricolage Grotesque", "Inter", sans-serif;
+        font-weight: 700;
+        font-size: 132px;
+        line-height: 0.96;
+        letter-spacing: -0.022em;
+      }
+      .name .dot {
+        color: var(--accent);
+      }
+      .tag {
+        font-size: 36px;
+        font-weight: 500;
+        color: #4a4e55;
+        margin-top: 30px;
+      }
+      .tech {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 26px;
+        color: var(--accent);
+        letter-spacing: 0.01em;
+        margin-top: 28px;
+      }
+      .tech .sep {
+        color: #8b9be9;
+      }
+
+      /* ---------- pipeline (index.html style, scaled) ---------- */
+      .pipe {
+        position: absolute;
+        top: 668px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 1000px;
+        display: flex;
+        align-items: flex-start;
+      }
+      .node {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 14px;
+        flex: 0 0 auto;
+        min-width: 80px;
+      }
+      .node .chip {
+        width: 30px;
+        height: 30px;
+        border-radius: 9px;
+        background: var(--surface);
+        border: 2px solid var(--line);
+        position: relative;
+      }
+      .node .chip::after {
+        content: "";
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        border-radius: 3px;
+        background: var(--faint);
+        inset: 0;
+        margin: auto;
+      }
+      .node.gql .chip { border-color: var(--accent); }
+      .node.gql .chip::after { background: var(--accent); }
+      .node.cf .chip { border-color: #f6821f; }
+      .node.cf .chip::after { background: #f6821f; }
+      .node .lbl {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 17px;
+        color: var(--muted);
+        white-space: nowrap;
+      }
+      .seg {
+        flex: 1 1 auto;
+        min-width: 34px;
+        height: 3px;
+        background: var(--line);
+        margin-top: 13.5px;
+        position: relative;
+        border-radius: 3px;
+      }
+      .seg .req {
+        position: absolute;
+        top: 50%;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--accent);
+        transform: translate(-50%, -50%);
+        box-shadow: 0 0 13px 2px rgba(47, 83, 245, 0.55);
+      }
+
+      /* ---------- bottom log ---------- */
+      .log {
+        position: absolute;
+        left: 96px;
+        bottom: 66px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 21px;
+        line-height: 1.85;
+        color: var(--muted);
+      }
+      .log .row {
+        display: flex;
+        gap: 14px;
+      }
+      .log .k {
+        width: 72px;
+        flex: 0 0 auto;
+      }
+      .log .ok {
+        color: var(--ok);
+      }
+      .log .blue {
+        color: var(--accent);
+      }
+      .log .ink {
+        color: var(--ink);
+        font-weight: 700;
+      }
+      .log .sep {
+        color: var(--faint);
+      }
+
+      .domain {
+        position: absolute;
+        right: 96px;
+        bottom: 72px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 21px;
+        letter-spacing: 0.28em;
+        color: var(--faint);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wall">
+      <div class="prompt">
+        <b>manoj@edge</b> <span class="tilde">~</span>
+        <span class="dollar">$</span> <span class="cmd">systems --status</span>
+      </div>
+
+      <div class="status-pill">
+        <span class="d"></span>ALL SYSTEMS OPERATIONAL · 99.9% UPTIME
+      </div>
+
+      <div class="hero">
+        <div class="name">Manoj Kumawat<span class="dot">.</span></div>
+        <div class="tag">Backend that stays up.</div>
+        <div class="tech">
+          Node.js <span class="sep">·</span> TypeScript <span class="sep">·</span>
+          GraphQL <span class="sep">·</span> AWS <span class="sep">·</span>
+          Azure <span class="sep">·</span> Cloudflare <span class="sep">·</span>
+          Cybersecurity
+        </div>
+      </div>
+
+      <div class="pipe">
+        <div class="node">
+          <div class="chip"></div>
+          <div class="lbl">Client</div>
+        </div>
+        <div class="seg"><span class="req" style="left: 42%"></span></div>
+        <div class="node cf">
+          <div class="chip"></div>
+          <div class="lbl">Cloudflare</div>
+        </div>
+        <div class="seg"><span class="req" style="left: 63%"></span></div>
+        <div class="node gql">
+          <div class="chip"></div>
+          <div class="lbl">Origin</div>
+        </div>
+        <div class="seg"><span class="req" style="left: 28%"></span></div>
+        <div class="node">
+          <div class="chip"></div>
+          <div class="lbl">Queue</div>
+        </div>
+        <div class="seg"><span class="req" style="left: 71%"></span></div>
+        <div class="node">
+          <div class="chip"></div>
+          <div class="lbl">Worker</div>
+        </div>
+        <div class="seg"><span class="req" style="left: 52%"></span></div>
+        <div class="node">
+          <div class="chip"></div>
+          <div class="lbl">Aurora</div>
+        </div>
+      </div>
+
+      <div class="log">
+        <div class="row">
+          <span class="k ok">[200]</span>
+          <span>POST <span class="ink">/graphql</span> <span class="sep">·</span> 38ms</span>
+        </div>
+        <div class="row">
+          <span class="k ok">[ok]</span>
+          <span>job <span class="blue">payout.reconcile</span> <span class="sep">·</span> done</span>
+        </div>
+        <div class="row">
+          <span class="k blue">[ws]</span>
+          <span>1,204 connections <span class="sep">·</span> <span class="ok">live</span></span>
+        </div>
+      </div>
+
+      <div class="domain">imkumawatmanoj.com</div>
+    </div>
+  </body>
+</html>

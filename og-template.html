@@ -91,7 +91,7 @@
         font-size: 96px;
         line-height: 0.96;
         letter-spacing: -0.022em;
-        margin-top: 60px;
+        margin-top: 34px;
       }
       .name .dot {
         color: var(--accent);
@@ -114,13 +114,13 @@
         font-family: "JetBrains Mono", monospace;
         font-size: 25px;
         color: var(--muted);
-        margin-top: 44px;
+        margin-top: 30px;
         display: flex;
         align-items: center;
         gap: 20px;
       }
       .stats + .stats {
-        margin-top: 22px;
+        margin-top: 14px;
       }
       .stats b {
         color: var(--ink);
@@ -128,6 +128,68 @@
       }
       .sep {
         color: var(--faint);
+      }
+      /* ---------- pipeline (index.html style, og scale) ---------- */
+      .pipe {
+        display: flex;
+        align-items: flex-start;
+        width: 780px;
+        margin-top: 46px;
+      }
+      .node {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        flex: 0 0 auto;
+        min-width: 58px;
+      }
+      .node .chip {
+        width: 24px;
+        height: 24px;
+        border-radius: 7px;
+        background: var(--surface);
+        border: 2px solid var(--line);
+        position: relative;
+      }
+      .node .chip::after {
+        content: "";
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        border-radius: 2.5px;
+        background: var(--faint);
+        inset: 0;
+        margin: auto;
+      }
+      .node.gql .chip { border-color: var(--accent); }
+      .node.gql .chip::after { background: var(--accent); }
+      .node.cf .chip { border-color: #f6821f; }
+      .node.cf .chip::after { background: #f6821f; }
+      .node .lbl {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 14px;
+        color: var(--muted);
+        white-space: nowrap;
+      }
+      .seg {
+        flex: 1 1 auto;
+        min-width: 26px;
+        height: 2.5px;
+        background: var(--line);
+        margin-top: 10.75px;
+        position: relative;
+        border-radius: 3px;
+      }
+      .seg .req {
+        position: absolute;
+        top: 50%;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--accent);
+        transform: translate(-50%, -50%);
+        box-shadow: 0 0 10px 1.5px rgba(47, 83, 245, 0.55);
       }
     </style>
   </head>
@@ -146,6 +208,38 @@
         Node.js · TypeScript · GraphQL · AWS · Azure · Cloudflare · Cybersecurity
       </div>
 
+      <div class="pipe">
+        <div class="node">
+          <div class="chip"></div>
+          <div class="lbl">Client</div>
+        </div>
+        <div class="seg"><span class="req" style="left: 42%"></span></div>
+        <div class="node cf">
+          <div class="chip"></div>
+          <div class="lbl">Cloudflare</div>
+        </div>
+        <div class="seg"><span class="req" style="left: 63%"></span></div>
+        <div class="node gql">
+          <div class="chip"></div>
+          <div class="lbl">Origin</div>
+        </div>
+        <div class="seg"><span class="req" style="left: 28%"></span></div>
+        <div class="node">
+          <div class="chip"></div>
+          <div class="lbl">Queue</div>
+        </div>
+        <div class="seg"><span class="req" style="left: 71%"></span></div>
+        <div class="node">
+          <div class="chip"></div>
+          <div class="lbl">Worker</div>
+        </div>
+        <div class="seg"><span class="req" style="left: 52%"></span></div>
+        <div class="node">
+          <div class="chip"></div>
+          <div class="lbl">Aurora</div>
+        </div>
+      </div>
+
       <div class="stats">
         <span><b>1.6M+</b> users</span>
         <span class="sep">·</span>
@@ -154,6 +248,8 @@
         <span><b>500K+</b> req/day</span>
       </div>
       <div class="stats">
+        <span><b>$150K+/mo</b> payouts</span>
+        <span class="sep">·</span>
         <span><b>&minus;50%</b> cloud cost</span>
       </div>
     </div>
