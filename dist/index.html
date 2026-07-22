@@ -4,14 +4,20 @@
     <!-- Static site — auto-deployed via GitHub → Cloudflare Pages -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- mark JS on before first paint so scroll-reveal has no flash -->
+    <script>
+      document.documentElement.className += " js";
+    </script>
     <meta name="theme-color" content="#2F53F5" />
+    <meta name="author" content="Manoj Kumawat" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <title>Manoj Kumawat — Senior Backend Engineer</title>
     <meta
       name="description"
-      content="Manoj Kumawat — Senior Backend Engineer. I build event-driven Node.js & GraphQL systems that stay up. Node.js/TypeScript, GraphQL, AWS — at scale, secure by design."
+      content="Manoj Kumawat — Senior Backend Engineer. 6 yrs building event-driven Node.js & GraphQL systems that stay up. 1.6M+ users, 500K+ req/day, ~50% cloud cost cut. Cybersecurity background."
     />
     <link rel="canonical" href="https://imkumawatmanoj.com/" />
     <meta property="og:type" content="website" />
@@ -39,7 +45,7 @@
     />
     <meta
       name="twitter:description"
-      content="Senior Backend Engineer — 6 yrs Node.js/TypeScript, GraphQL, AWS. 1.6M+ users, 500K+ req/day, ~50% cloud cost cut. Systems that stay up, secure by design."
+      content="Senior Backend Engineer — 6 yrs Node.js/TypeScript, GraphQL, AWS. 1.6M+ users, 500K+ req/day, ~50% cloud cost cut."
     />
     <meta
       name="twitter:image"
@@ -51,17 +57,67 @@
       href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
+    <link rel="me" href="https://github.com/imkumawat" />
+    <link rel="me" href="https://linkedin.com/in/imkumawat" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Person",
+            "@id": "https://imkumawatmanoj.com/#me",
+            "name": "Manoj Kumawat",
+            "url": "https://imkumawatmanoj.com/",
+            "jobTitle": "Senior Backend Engineer",
+            "email": "mailto:me@imkumawatmanoj.com",
+            "description": "Senior Backend Engineer with 6 years across product and security engineering — Node.js/TypeScript, GraphQL, and AWS.",
+            "worksFor": { "@type": "Organization", "name": "Springworks" },
+            "alumniOf": {
+              "@type": "CollegeOrUniversity",
+              "name": "Lovely Professional University"
+            },
+            "knowsAbout": [
+              "Node.js",
+              "TypeScript",
+              "GraphQL",
+              "Apollo",
+              "AWS",
+              "Azure",
+              "Cloudflare",
+              "Distributed Systems",
+              "Event-Driven Architecture",
+              "API Design",
+              "Cybersecurity",
+              "VAPT"
+            ],
+            "sameAs": [
+              "https://github.com/imkumawat",
+              "https://linkedin.com/in/imkumawat"
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://imkumawatmanoj.com/#website",
+            "url": "https://imkumawatmanoj.com/",
+            "name": "Manoj Kumawat",
+            "description": "Senior Backend Engineer — event-driven Node.js & GraphQL systems at scale.",
+            "inLanguage": "en",
+            "publisher": { "@id": "https://imkumawatmanoj.com/#me" }
+          }
+        ]
+      }
+    </script>
     <style>
       :root {
-        --bg: #ecedef;
+        --bg: #f7f8fa;
         --surface: #ffffff;
         --ink: #17191d;
         --muted: #5b6068;
         --faint: #9aa0a6;
         --accent: #2f53f5;
         --accent-dk: #2544d6;
-        --line: #d6d8dc;
-        --line-soft: #e3e4e7;
+        --line: #e7e9ee;
+        --line-soft: #eef0f3;
         --ok: #1fa463;
       }
       * {
@@ -89,7 +145,7 @@
         padding: 52px 32px 64px;
         background-image: radial-gradient(
           circle at 1px 1px,
-          rgba(23, 25, 29, 0.05) 1px,
+          rgba(23, 25, 29, 0.045) 1px,
           transparent 0
         );
         background-size: 26px 26px;
@@ -98,6 +154,10 @@
         width: 100%;
         max-width: 820px;
         margin: 0 auto;
+        position: relative;
+        padding-left: 44px;
+      }
+      .hero {
         text-align: center;
       }
 
@@ -147,6 +207,28 @@
       }
       h1 .dot {
         color: var(--accent);
+      }
+      h1 .name {
+        background: linear-gradient(
+          120deg,
+          var(--accent) 0%,
+          #6d8bff 45%,
+          var(--accent) 90%
+        );
+        background-size: 200% 100%;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: transparent;
+        transition: background-position 0.6s ease;
+      }
+      h1:hover .name {
+        background-position: 100% 0;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        h1 .name {
+          transition: none;
+        }
       }
       .role {
         font-size: clamp(1.05rem, 3vw, 1.3rem);
@@ -204,17 +286,196 @@
         letter-spacing: 0.01em;
       }
 
-      /* ---------- pipeline ---------- */
-      .pipe-wrap {
+      /* ---------- ci/cd deploy → live pipeline (signature) ---------- */
+      .deploy-wrap {
         margin: 38px 0 4px;
+      }
+      .deploy-panel {
+        background: transparent;
+        border: 0;
+        border-radius: 0;
+        padding: 0;
+        max-width: 660px;
+        margin: 0 auto;
+      }
+      .deploy-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 6px 12px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        color: var(--muted);
+        margin-bottom: 22px;
+        letter-spacing: 0.03em;
+      }
+      .dep-right {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .dep-msg {
+        color: var(--muted);
+      }
+      .dep-msg.done::before {
+        content: "✓ ";
+        color: var(--ok);
+      }
+      .dep-status {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--muted);
+      }
+      .dep-status .spin {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        border: 2px solid var(--accent);
+        border-top-color: transparent;
+        animation: spin 0.8s linear infinite;
+        flex: 0 0 auto;
+      }
+      .dep-status.done {
+        color: var(--ok);
+      }
+      .dep-status.done .spin {
+        display: none;
+      }
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .steps {
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+      }
+      .dstep {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 9px;
+        flex: 0 0 auto;
+        min-width: 62px;
+      }
+      .dstep .mark {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        border: 1.5px solid var(--line);
+        background: var(--surface);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        transition:
+          border-color 0.25s ease,
+          background 0.25s ease;
+      }
+      .dstep .mark .dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--faint);
+        transition: background 0.2s ease;
+      }
+      .dstep.run .mark {
+        border-color: var(--accent);
+      }
+      .dstep.run .mark .dot {
+        background: var(--accent);
+        animation: beat 1.1s ease-out infinite;
+      }
+      .dstep.done .mark {
+        border-color: var(--ok);
+        background: var(--ok);
+      }
+      .dstep.done .mark .dot {
+        display: none;
+      }
+      .dstep.done .mark::after {
+        content: "✓";
+        color: #fff;
+        font-size: 13px;
+        font-weight: 700;
+        line-height: 1;
+      }
+      .dstep .dlbl {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 10.5px;
+        color: var(--muted);
+        white-space: nowrap;
+        transition: color 0.2s ease;
+      }
+      .dstep.run .dlbl,
+      .dstep.done .dlbl {
+        color: var(--ink);
+      }
+      .dseg {
+        flex: 1 1 auto;
+        min-width: 16px;
+        height: 2px;
+        background: var(--line);
+        margin-top: 11px;
+        border-radius: 2px;
+        position: relative;
+        overflow: hidden;
+      }
+      .dseg::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 0;
+        background: var(--ok);
+        transition: width 0.35s ease;
+      }
+      .dseg.fill::after {
+        width: 100%;
+      }
+
+      /* live request pipeline (revealed after deploy) */
+      #build-view {
+        transition: opacity 0.4s ease;
+      }
+      #build-view.collapsed {
+        opacity: 0;
+      }
+      .live-pipe {
+        display: none;
+      }
+      .live-pipe.show {
+        display: block;
+        animation: rise 0.55s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+      }
+      .ev {
+        color: var(--accent);
+        white-space: nowrap;
+        display: none;
+      }
+      .ev.show {
+        display: inline;
+      }
+      .flow-cv {
+        display: block;
+        width: 100%;
+        height: 84px;
+      }
+      #reqps {
+        font-variant-numeric: tabular-nums;
+        color: var(--accent);
       }
       .pipe {
         display: flex;
         align-items: flex-start;
         width: 100%;
-        max-width: 620px;
-        margin-left: auto;
-        margin-right: auto;
+        max-width: 560px;
+        margin: 0 auto;
       }
       .node {
         display: flex;
@@ -260,9 +521,34 @@
         color: var(--muted);
         white-space: nowrap;
       }
+      .node.act .chip {
+        border-color: var(--accent);
+      }
+      .node.act .chip::before {
+        content: "";
+        position: absolute;
+        inset: -5px;
+        border-radius: 9px;
+        border: 1.5px solid var(--accent);
+        opacity: 0;
+        animation: nodePulse 2.4s ease-out infinite;
+      }
+      @keyframes nodePulse {
+        0% {
+          opacity: 0.55;
+          transform: scale(0.85);
+        }
+        70% {
+          opacity: 0;
+          transform: scale(1.35);
+        }
+        100% {
+          opacity: 0;
+        }
+      }
       .seg {
         flex: 1 1 auto;
-        min-width: 22px;
+        min-width: 20px;
         height: 2px;
         background: var(--line);
         margin-top: 9.5px;
@@ -309,12 +595,6 @@
       .seg:nth-of-type(10) .req {
         animation-delay: 2s;
       }
-      .pipe-cap {
-        font-family: "JetBrains Mono", monospace;
-        font-size: 11px;
-        color: var(--muted);
-        margin-top: 15px;
-      }
 
       /* ---------- section heading ---------- */
       .sec-head {
@@ -322,7 +602,7 @@
         font-size: 11.5px;
         letter-spacing: 0.16em;
         text-transform: uppercase;
-        color: var(--faint);
+        color: var(--muted);
         display: flex;
         align-items: center;
         gap: 12px;
@@ -336,135 +616,230 @@
         background: var(--line);
       }
 
-      /* ---------- work ---------- */
-      .card {
+      /* ---------- summary ---------- */
+      .summary-card {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-left: 3px solid var(--accent);
+        border-radius: 12px;
+        padding: 18px 20px;
+        text-align: left;
+        font-size: 0.98rem;
+        line-height: 1.6;
+        color: var(--muted);
+      }
+      .summary-card b {
+        color: var(--ink);
+        font-weight: 500;
+      }
+
+      /* ---------- experience ---------- */
+      .entry {
+        position: relative;
+        text-align: left;
+        padding-left: 20px;
+      }
+      .entry + .entry {
+        margin-top: 26px;
+      }
+      .entry::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 6px;
+        bottom: 2px;
+        width: 2px;
+        background: var(--line);
+        border-radius: 2px;
+      }
+      .entry::after {
+        content: "";
+        position: absolute;
+        left: -3px;
+        top: 6px;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--accent);
+        box-shadow: 0 0 0 3px var(--bg);
+      }
+      .entry-top {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .entry-h {
+        font-size: 1.02rem;
+        font-weight: 600;
+      }
+      .entry-org {
+        color: var(--ink);
+      }
+      .entry-role {
+        color: var(--accent);
+        font-weight: 600;
+      }
+      .entry-meta {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11.5px;
+        color: var(--muted);
+        white-space: nowrap;
+      }
+      .entry-sub {
+        font-size: 0.9rem;
+        color: var(--muted);
+        margin-top: 3px;
+      }
+      .entry-sub a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+      .entry-sub a:hover {
+        text-decoration: underline;
+      }
+
+      .bullets {
+        list-style: none;
+        margin-top: 12px;
+        display: flex;
+        flex-direction: column;
+        gap: 9px;
+      }
+      .bullets li {
+        position: relative;
+        padding-left: 18px;
+        font-size: 0.92rem;
+        line-height: 1.55;
+        color: var(--muted);
+      }
+      .bullets li::before {
+        content: "";
+        position: absolute;
+        left: 2px;
+        top: 8px;
+        width: 5px;
+        height: 5px;
+        border-radius: 1px;
+        background: var(--faint);
+      }
+      .bullets li b {
+        color: var(--ink);
+        font-weight: 600;
+      }
+
+      /* ---------- projects ---------- */
+      .proj {
         background: var(--surface);
         border: 1px solid var(--line);
         border-radius: 14px;
-        padding: 22px 24px;
+        padding: 20px 22px;
+        text-align: left;
         transition:
           transform 0.16s ease,
           border-color 0.16s ease,
           box-shadow 0.16s ease;
       }
-      .card:hover {
+      .proj:hover {
         transform: translateY(-2px);
         border-color: var(--muted);
-        box-shadow: 0 6px 22px rgba(23, 25, 29, 0.06);
+        box-shadow: 0 6px 22px rgba(23, 25, 29, 0.05);
       }
-      .card + .card {
+      .proj + .proj {
         margin-top: 12px;
       }
-      .card-top {
+      .proj-top {
         display: flex;
         align-items: baseline;
         justify-content: space-between;
-        gap: 12px;
+        gap: 10px;
         flex-wrap: wrap;
       }
-      .card-name {
+      .proj-name {
+        font-size: 1rem;
         font-weight: 600;
-        font-size: 1.06rem;
       }
-      .card-name a {
-        color: inherit;
-        text-decoration: none;
-        transition: color 0.12s ease;
-      }
-      .card-name a:hover {
+      .proj-name a {
         color: var(--accent);
-      }
-      .card-name .tag {
-        font-family: "JetBrains Mono", monospace;
-        font-size: 11px;
-        font-weight: 400;
-        color: var(--muted);
-        border: 1px solid var(--line);
-        border-radius: 5px;
-        padding: 2px 7px;
-        margin-left: 8px;
-        vertical-align: middle;
-      }
-      .card-link {
         font-family: "JetBrains Mono", monospace;
         font-size: 12px;
-        color: var(--accent);
+        font-weight: 400;
         text-decoration: none;
+        margin-left: 6px;
+        white-space: nowrap;
       }
-      .card-link:hover {
+      .proj-name a:hover {
         text-decoration: underline;
       }
-      .card-desc {
-        font-size: 0.95rem;
-        color: var(--muted);
-        margin-top: 8px;
-        line-height: 1.55;
-        text-align: left;
-      }
-      .card-desc b {
-        color: var(--ink);
-        font-weight: 500;
-      }
-      .chips {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 7px;
-        margin-top: 14px;
-      }
-      .chips span {
-        position: relative;
+      .proj-meta {
         font-family: "JetBrains Mono", monospace;
-        font-size: 11px;
-        color: var(--ink);
-        background: #f3f4f6;
-        border: 1px solid var(--line-soft);
-        border-radius: 6px;
-        padding: 4px 9px;
-        transition:
-          background 0.14s ease,
-          border-color 0.14s ease;
-      }
-      .chips span[data-tip] {
-        cursor: help;
-      }
-      .chips span[data-tip]:hover,
-      .chips span[data-tip]:focus {
-        background: #fff;
-        border-color: var(--accent);
-        outline: none;
-      }
-      .chips span[data-tip]::after {
-        content: attr(data-tip);
-        position: absolute;
-        bottom: calc(100% + 9px);
-        left: 50%;
-        width: max-content;
-        max-width: min(260px, 78vw);
-        background: var(--surface);
-        color: var(--ink);
-        text-align: left;
-        border: 1px solid var(--line);
-        font-family: "Inter", sans-serif;
-        font-weight: 400;
         font-size: 11.5px;
-        line-height: 1.45;
-        letter-spacing: normal;
-        text-transform: none;
-        padding: 9px 11px;
-        border-radius: 9px;
-        box-shadow: 0 8px 24px rgba(23, 25, 29, 0.13);
-        opacity: 0;
-        transform: translate(-50%, 4px);
-        pointer-events: none;
-        z-index: 8;
-        transition:
-          opacity 0.14s ease,
-          transform 0.14s ease;
+        color: var(--muted);
       }
-      .chips span[data-tip]:hover::after,
-      .chips span[data-tip]:focus::after {
-        opacity: 1;
-        transform: translate(-50%, 0);
+      .proj-stack {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11.5px;
+        color: var(--accent);
+        margin-top: 6px;
+      }
+
+      /* ---------- home lab note ---------- */
+      .lab-note {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12px;
+        color: var(--muted);
+        text-align: left;
+        margin-bottom: 14px;
+      }
+      .lab-note .prompt {
+        color: var(--ok);
+      }
+
+      /* ---------- skills ---------- */
+      .skill-row {
+        display: grid;
+        grid-template-columns: 150px 1fr;
+        gap: 14px;
+        text-align: left;
+        padding: 11px 0;
+        border-top: 1px solid var(--line-soft);
+      }
+      .skill-row:first-of-type {
+        border-top: 0;
+      }
+      .skill-key {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .skill-val {
+        font-size: 0.92rem;
+        color: var(--ink);
+        line-height: 1.55;
+      }
+
+      /* ---------- education ---------- */
+      .edu {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 10px;
+        flex-wrap: wrap;
+        text-align: left;
+      }
+      .edu-school {
+        font-weight: 600;
+      }
+      .edu-deg {
+        font-size: 0.92rem;
+        color: var(--muted);
+        margin-top: 2px;
+      }
+      .edu-meta {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11.5px;
+        color: var(--muted);
       }
 
       /* ---------- links ---------- */
@@ -473,7 +848,7 @@
         flex-wrap: wrap;
         justify-content: center;
         gap: 10px;
-        margin-top: 22px;
+        margin-top: 30px;
       }
       .btn {
         display: inline-flex;
@@ -554,7 +929,7 @@
         }
       }
 
-      /* ---------- load-in ---------- */
+      /* ---------- load-in (hero) ---------- */
       @keyframes rise {
         from {
           opacity: 0;
@@ -589,20 +964,21 @@
       .in > *:nth-child(7) {
         animation-delay: 0.48s;
       }
-      .in > *:nth-child(8) {
-        animation-delay: 0.56s;
+
+      /* ---------- scroll reveal (resume sections) ---------- */
+      .js .reveal {
+        opacity: 0;
+        transform: translateY(18px);
+        filter: blur(6px);
+        transition:
+          opacity 0.6s cubic-bezier(0.2, 0.7, 0.2, 1),
+          transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1),
+          filter 0.6s ease;
       }
-      .in > *:nth-child(9) {
-        animation-delay: 0.64s;
-      }
-      .in > *:nth-child(10) {
-        animation-delay: 0.72s;
-      }
-      .in > *:nth-child(11) {
-        animation-delay: 0.8s;
-      }
-      .in > *:nth-child(12) {
-        animation-delay: 0.88s;
+      .reveal.is-visible {
+        opacity: 1;
+        transform: none;
+        filter: none;
       }
 
       @media (max-width: 620px) {
@@ -619,8 +995,26 @@
         .stats {
           grid-template-columns: repeat(2, 1fr);
         }
+        .sec-head {
+          margin: 40px 0 16px;
+        }
+        .deploy-panel {
+          padding: 0;
+        }
+        .deploy-top {
+          font-size: 10px;
+        }
+        .dstep {
+          min-width: 46px;
+        }
+        .dstep .dlbl {
+          font-size: 9px;
+        }
+        .dseg {
+          min-width: 8px;
+        }
         .node {
-          min-width: 34px;
+          min-width: 40px;
         }
         .node .lbl {
           font-size: 9px;
@@ -630,22 +1024,40 @@
           height: 18px;
         }
         .seg {
-          min-width: 10px;
+          min-width: 8px;
           margin-top: 8px;
         }
-        .sec-head {
-          margin: 40px 0 16px;
+        .skill-row {
+          grid-template-columns: 1fr;
+          gap: 4px;
         }
-        .chips span[data-tip]::after {
-          display: none;
+        .skill-key {
+          color: var(--muted);
+        }
+        .entry-meta,
+        .proj-meta,
+        .edu-meta {
+          white-space: normal;
         }
       }
       @media (prefers-reduced-motion: reduce) {
         .in > * {
           animation: none;
         }
+        .js .reveal {
+          opacity: 1;
+          transform: none;
+          filter: none;
+          transition: none;
+        }
         .pulse,
         .avail .d {
+          animation: none;
+        }
+        .dep-status .spin {
+          animation: none;
+        }
+        .dstep.run .mark .dot {
           animation: none;
         }
         .seg .req {
@@ -653,206 +1065,595 @@
           left: 50%;
           opacity: 0.55;
         }
+        .node.act .chip::before {
+          animation: none;
+        }
+        .live-pipe.show {
+          animation: none;
+        }
+        #build-view {
+          transition: none;
+        }
+      }
+      /* ================= request-trace spine (signature) ================= */
+      .spine {
+        position: absolute;
+        left: 16px;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: var(--line-soft);
+        border-radius: 2px;
+        z-index: 0;
+      }
+      .spine-fill {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 0;
+        border-radius: 2px;
+        background: linear-gradient(var(--accent), var(--ok));
+        box-shadow: 0 0 12px 0 rgba(47, 83, 245, 0.32);
+      }
+      .spine-head {
+        position: absolute;
+        left: 50%;
+        bottom: -5px;
+        width: 11px;
+        height: 11px;
+        transform: translateX(-50%);
+        border-radius: 50%;
+        background: var(--accent);
+        box-shadow:
+          0 0 0 4px var(--bg),
+          0 0 14px 2px rgba(47, 83, 245, 0.6);
+      }
+      .spine-node {
+        position: absolute;
+        left: 17px;
+        transform: translate(-50%, -50%);
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: var(--surface);
+        border: 1.5px solid var(--line);
+        z-index: 1;
+        transition:
+          border-color 0.35s ease,
+          background 0.35s ease,
+          box-shadow 0.35s ease;
+      }
+      .spine-node.lit {
+        border-color: var(--accent);
+        background: var(--accent);
+        box-shadow: 0 0 10px 1px rgba(47, 83, 245, 0.5);
+      }
+
+      /* ================= stat sparklines (observability) ================= */
+      .stat {
+        position: relative;
+        overflow: hidden;
+      }
+      .stat b,
+      .stat span {
+        position: relative;
+        z-index: 1;
+      }
+      .stat .spark {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 22px;
+        opacity: 0.2;
+        pointer-events: none;
+        z-index: 0;
+      }
+      .stat .spark polyline {
+        fill: none;
+        stroke: var(--accent);
+        stroke-width: 1.5;
+        vector-effect: non-scaling-stroke;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-dasharray: 190;
+        stroke-dashoffset: 190;
+      }
+      .stat.drawn .spark polyline {
+        transition: stroke-dashoffset 1.3s ease 0.1s;
+        stroke-dashoffset: 0;
+      }
+
+      @media (max-width: 620px) {
+        main {
+          padding-left: 26px;
+        }
+        .spine {
+          left: 9px;
+        }
+        .spine-node {
+          left: 10px;
+          width: 8px;
+          height: 8px;
+        }
+        .spine-head {
+          width: 9px;
+          height: 9px;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .stat.drawn .spark polyline {
+          transition: none;
+          stroke-dashoffset: 0;
+        }
+      }
+      /* ================= premium interaction layer ================= */
+
+      /* magnetic (transform applied inline by JS; ease smooths follow + reset) */
+      .magnetic {
+        will-change: transform;
+      }
+      .avail {
+        transition: transform 0.18s cubic-bezier(0.2, 0.7, 0.2, 1);
+      }
+
+      /* hero word assemble */
+      .w {
+        display: inline-block;
+        animation: wordIn 0.72s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+      }
+      @keyframes wordIn {
+        from {
+          opacity: 0;
+          transform: translateY(26px);
+          filter: blur(8px);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+          filter: none;
+        }
+      }
+      .w:nth-child(1) {
+        animation-delay: 0.05s;
+      }
+      .w:nth-child(2) {
+        animation-delay: 0.14s;
+      }
+      .w:nth-child(3) {
+        animation-delay: 0.23s;
+      }
+      .hero.in > h1 {
+        animation: none;
+      }
+
+      /* inline link underline draw */
+      .entry-sub a,
+      .proj-name a {
+        text-decoration: none;
+        background-image: linear-gradient(var(--accent), var(--accent));
+        background-repeat: no-repeat;
+        background-position: 0 100%;
+        background-size: 0% 1.5px;
+        transition: background-size 0.3s ease;
+        padding-bottom: 1px;
+      }
+      .entry-sub a:hover,
+      .proj-name a:hover {
+        text-decoration: none;
+        background-size: 100% 1.5px;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .w {
+          animation: none;
+        }
       }
     </style>
   </head>
   <body>
-    <main class="in">
-      <div class="top">
-        <span class="dom">imkumawatmanoj.com</span>
-        <span class="avail"
-          ><span class="d" aria-hidden="true"></span>Open to senior backend
-          roles</span
-        >
+    <main>
+      <div class="spine" aria-hidden="true">
+        <div class="spine-fill"><div class="spine-head"></div></div>
+      </div>
+      <div class="hero in">
+        <div class="top">
+          <span class="dom">imkumawatmanoj.com</span>
+          <span class="avail magnetic"
+            ><span class="d" aria-hidden="true"></span>Open to senior backend
+            roles</span
+          >
+        </div>
+
+        <h1>
+          <span class="w">Hey,</span> <span class="w">I'm</span>
+          <span class="w"
+            ><span class="name">Manoj</span><span class="dot">.</span></span
+          >
+        </h1>
+        <div class="role">Senior Backend Engineer</div>
+        <p class="lede">
+          I design and build
+          <strong>event-driven Node.js &amp; GraphQL</strong> systems that
+          <strong>stay up</strong> — at scale, and secure by design.
+        </p>
+        <div class="tech">
+          Node.js · TypeScript · GraphQL · AWS · Azure · Cloudflare ·
+          Cybersecurity
+        </div>
+
+        <div class="stats" aria-label="Impact at scale">
+          <div class="stat">
+            <b data-count="1.6" data-suffix="M+" data-dec="1">1.6M+</b
+            ><span>users</span>
+          </div>
+          <div class="stat">
+            <b data-count="400" data-suffix="K+">400K+</b
+            ><span>subscriptions</span>
+          </div>
+          <div class="stat">
+            <b data-count="500" data-suffix="K+">500K+</b><span>req / day</span>
+          </div>
+          <div class="stat">
+            <b data-count="150" data-prefix="$" data-suffix="K+">$150K+</b
+            ><span>/mo payouts</span>
+          </div>
+          <div class="stat">
+            <b data-count="50" data-prefix="&minus;" data-suffix="%"
+              >&minus;50%</b
+            ><span>cloud cost</span>
+          </div>
+        </div>
+
+        <div class="deploy-wrap">
+          <div class="deploy-panel">
+            <div class="deploy-top">
+              <span class="dep-msg" id="dep-msg"
+                >new changes pushed to main</span
+              >
+              <span class="dep-right">
+                <span class="dep-status" id="dep-status"
+                  ><span class="spin" aria-hidden="true"></span
+                  ><span class="t">running…</span></span
+                >
+                <span class="ev" id="ev"
+                  ><span id="reqps">506</span> req/s</span
+                >
+              </span>
+            </div>
+            <div id="build-view">
+              <div class="steps" id="steps" aria-hidden="true"></div>
+            </div>
+            <div class="live-pipe" id="live-pipe" aria-hidden="true">
+              <canvas class="flow-cv" aria-hidden="true"></canvas>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <h1>Hey, I'm Manoj<span class="dot">.</span></h1>
-      <div class="role">Senior Backend Engineer</div>
-      <p class="lede">
-        I design and build
-        <strong>event-driven Node.js &amp; GraphQL</strong> systems that
-        <strong>stay up</strong> — at scale, and secure by design.
-      </p>
-      <div class="tech">
-        Node.js · TypeScript · GraphQL · AWS · Azure · Cloudflare · Cybersecurity
-      </div>
+      <section class="reveal">
+        <h2 class="sec-head">Summary</h2>
+        <p class="summary-card">
+          Senior Backend Engineer, <b>6 years</b> across product and security
+          engineering — including 4+ years building e-commerce and subscription
+          systems serving <b>1.6M+ users</b> and
+          <b>400K+ active subscriptions</b>. Expertise in Node.js/TypeScript,
+          <b>GraphQL (Apollo)</b> and REST API design, fault-tolerant
+          event-driven architecture, and AWS: led a full Shopify platform
+          migration, cut cloud spend <b>~50%</b>, and run a monitored,
+          idempotent payout pipeline processing <b>$150K+/month</b>.
+          Cybersecurity background (OWASP Top 10, VAPT) — I architect systems
+          <b>secure-by-design</b>: hardened authentication, scoped
+          authorization, rate limiting, and query complexity/abuse limits.
+        </p>
+      </section>
 
-      <div class="stats" aria-label="Impact at scale">
-        <div class="stat">
-          <b data-count="1.6" data-suffix="M+" data-dec="1">1.6M+</b
-          ><span>users</span>
-        </div>
-        <div class="stat">
-          <b data-count="400" data-suffix="K+">400K+</b
-          ><span>subscriptions</span>
-        </div>
-        <div class="stat">
-          <b data-count="500" data-suffix="K+">500K+</b><span>req / day</span>
-        </div>
-        <div class="stat">
-          <b data-count="150" data-prefix="$" data-suffix="K+">$150K+</b
-          ><span>/mo payouts</span>
-        </div>
-        <div class="stat">
-          <b data-count="50" data-prefix="&minus;" data-suffix="%">&minus;50%</b
-          ><span>cloud cost</span>
-        </div>
-      </div>
+      <section class="reveal">
+        <h2 class="sec-head">Experience</h2>
 
-      <div class="pipe-wrap">
-        <div class="pipe" aria-hidden="true">
-          <div class="node">
-            <div class="chip"></div>
-            <div class="lbl">Client</div>
+        <div class="entry">
+          <div class="entry-top">
+            <h3 class="entry-h">
+              <span class="entry-org">Springworks</span> —
+              <span class="entry-role">Senior Backend Engineer</span>
+            </h3>
+            <div class="entry-meta">Mar 2022 – Present · Remote</div>
           </div>
-          <div class="seg"><span class="req"></span></div>
-          <div class="node cf">
-            <div class="chip"></div>
-            <div class="lbl">Cloudflare</div>
-          </div>
-          <div class="seg"><span class="req"></span></div>
-          <div class="node gql">
-            <div class="chip"></div>
-            <div class="lbl">Origin</div>
-          </div>
-          <div class="seg"><span class="req"></span></div>
-          <div class="node">
-            <div class="chip"></div>
-            <div class="lbl">Queue</div>
-          </div>
-          <div class="seg"><span class="req"></span></div>
-          <div class="node">
-            <div class="chip"></div>
-            <div class="lbl">Worker</div>
-          </div>
-          <div class="seg"><span class="req"></span></div>
-          <div class="node">
-            <div class="chip"></div>
-            <div class="lbl">Aurora</div>
-          </div>
-        </div>
-      
-      </div>
-
-      <div class="sec-head">Selected work</div>
-
-      <div class="card">
-        <div class="card-top">
-          <div class="card-name">
+          <div class="entry-sub">
             <a href="https://burstoralcare.com/" target="_blank" rel="noopener"
               >Burst Oral Care ↗</a
             >
-            <span class="tag">Springworks · e-commerce</span>
+            — e-commerce &amp; subscription platform
+          </div>
+          <ul class="bullets">
+            <li>
+              Led a full custom-platform to Shopify migration for a
+              <b>400K+ subscription</b>, <b>1.6M+ user</b> store — implemented
+              complex ambassador discount logic (40K+ codes) as Shopify
+              Functions and cut over with no disruption to recurring billing.
+            </li>
+            <li>
+              <b>Sole DevOps owner</b> for the platform — cut AWS spend
+              <b>~50%</b> (Aurora/RDS tuning, ECS/Kubernetes right-sizing,
+              CloudWatch retention/log-ingestion tuning, S3/Glacier lifecycle)
+              and replaced a $2K/month hosted BI tool (Periscope/Sisense) with
+              self-hosted Redash on EC2, eliminating <b>~$24K/year</b> in
+              licensing.
+            </li>
+            <li>
+              Designed and built the ambassador payout system from scratch with
+              idempotent Stripe transfers and automated reconciliation — a
+              robust design that prevents duplicate transfers under retries and
+              failures, across <b>$150K+/month</b>.
+            </li>
+            <li>
+              Optimized a high-load analytics pipeline by rewriting correlated
+              subqueries into indexed JOINs on a <b>17M+ row</b> activity table,
+              cutting database load <b>~91%</b> — diagnosed through slow-query
+              analysis and composite index design.
+            </li>
+            <li>
+              Built and operated REST APIs across subscriptions, payments, and
+              orders (<b>500K+ requests/day</b>) on Aurora MySQL (<b
+                >12M+ row</b
+              >
+              order tables), holding p95 latency under production peaks via
+              connection pooling, indexing, and query tuning.
+            </li>
+            <li>
+              Architected event-driven sync on Shopify's GraphQL Admin API and
+              webhooks, mirroring customers, orders, products, and discounts
+              into internal systems for near-real-time analytics and automation.
+            </li>
+            <li>
+              Hardened the platform edge with <b>Cloudflare</b> — WAF rules,
+              rate limiting, and Turnstile bot protection on abuse-prone
+              endpoints, plus Workers and Pages for edge logic and static
+              delivery; offloaded traffic from origin and reduced attack
+              surface.
+            </li>
+            <li>
+              Implemented Shopify Functions (cart validation, purchase
+              restrictions, delivery customization, custom discounts), retiring
+              paid third-party apps; built custom B2B/wholesale recurring
+              billing Shopify could not natively support.
+            </li>
+            <li>
+              Built custom <b>MCP (Model Context Protocol)</b> servers and
+              connectors in TypeScript exposing internal systems (production
+              database, Shopify, AWS) as structured, read-scoped tools —
+              enabling safe AI-assisted operations and investigation over
+              production data without direct credential exposure.
+            </li>
+          </ul>
+        </div>
+
+        <div class="entry">
+          <div class="entry-top">
+            <h3 class="entry-h">
+              <span class="entry-org">Truminds Software Systems</span> —
+              <span class="entry-role">Security Engineer</span>
+            </h3>
+            <div class="entry-meta">Jul 2020 – Feb 2022 · Gurgaon, India</div>
+          </div>
+          <div class="entry-sub">Penetration Testing &amp; VAPT</div>
+          <ul class="bullets">
+            <li>
+              Performed end-to-end <b>VAPT</b> (vulnerability assessment &amp;
+              penetration testing) on web applications, REST APIs, and network
+              infrastructure — combining manual exploitation on
+              <b>Kali Linux</b> with Burp Suite, OWASP ZAP, sqlmap, Nessus, and
+              Metasploit to uncover and exploit OWASP Top 10 flaws (SQL
+              injection, broken access control, XSS, IDOR, auth bypass).
+            </li>
+            <li>
+              Chained real-world attack paths — from injection and broken
+              authentication to privilege escalation — and delivered detailed
+              exploit walkthroughs, risk ratings (<b>CVSS</b>), and remediation
+              guidance that engineering teams shipped to closure.
+            </li>
+            <li>
+              Drove <b>secure-by-design</b> practices across teams — threat
+              modeling, secure-coding reviews, and shift-left security in CI —
+              eliminating recurring vulnerability classes and building the
+              security instincts I now apply as a backend engineer.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="reveal">
+        <h2 class="sec-head">Projects</h2>
+        <div class="proj">
+          <div class="proj-top">
+            <h3 class="proj-name">
+              blue-node — backend reference implementation
+              <a
+                href="https://github.com/imkumawat/blue-node"
+                target="_blank"
+                rel="noopener"
+                >github.com/imkumawat/blue-node ↗</a
+              >
+            </h3>
+            <div class="proj-meta">2026</div>
+          </div>
+          <div class="proj-stack">
+            Node.js · TypeScript · Express 5 · Apollo GraphQL · Postgres ·
+            MongoDB · Redis · AWS
+          </div>
+          <ul class="bullets">
+            <li>
+              Modular monolith in TypeScript (ESM) on Express 5 — per-module
+              REST + GraphQL (Apollo) adapters over Postgres (Drizzle), MongoDB,
+              and Redis, plus an MQTT 5 broker client as a resilient shared
+              transport; BullMQ + standalone SQS worker for background jobs.
+            </li>
+            <li>
+              Per-request <b>DataLoader</b> batching to eliminate resolver
+              <b>N+1</b> (order-preserving batch queries behind a request-scoped
+              context), with query-complexity limits.
+            </li>
+            <li>
+              Directive-driven GraphQL security at the schema level —
+              <b>@authenticated</b>, <b>@requireScope</b>, <b>@rateLimit</b>,
+              and alias-abuse protection.
+            </li>
+            <li>
+              Unified <b>JWT</b> auth core for REST + Apollo —
+              access/refresh-token rotation &amp; reuse detection, scoped
+              permissions, and per-IP/account lockout.
+            </li>
+            <li>
+              Multi-instance real-time layer — WebSocket transport with a
+              connection manager and Redis Pub/Sub fan-out (rooms) across
+              horizontally-scaled instances; graceful shutdown drains in-flight
+              requests and jobs on SIGTERM; pino logging; CI (GitHub Actions +
+              Azure DevOps) with typecheck, lint, Vitest.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="reveal">
+        <h2 class="sec-head">Home Lab &amp; Self-Hosted Infra</h2>
+        <div class="lab-note">
+          <span class="prompt">manoj@lab:~$</span> uptime — a running playground
+          where I break things on purpose
+        </div>
+        <div class="proj">
+          <div class="proj-top">
+            <h3 class="proj-name">
+              Self-hosted home lab
+              <a
+                href="https://api.imkumawatmanoj.com"
+                target="_blank"
+                rel="noopener"
+                >api.imkumawatmanoj.com ↗</a
+              >
+            </h3>
+            <div class="proj-meta">Ongoing</div>
+          </div>
+          <div class="proj-stack">
+            Ubuntu Server · Docker · systemd · Cloudflare Tunnel · Workers · R2
+            · nginx
+          </div>
+          <ul class="bullets">
+            <li>
+              Run a bare-metal Ubuntu Server home lab exposing services publicly
+              through a <b>Cloudflare Tunnel</b> — bypassing ISP CGNAT (no
+              public IP, no port forwarding) with hostname-based routing (<b
+                >api</b
+              >
+              and <b>app</b> subdomains) to multiple backend services on a
+              single tunnel.
+            </li>
+            <li>
+              Operate a real Node.js API (Postgres, Redis, Mongo) behind the
+              tunnel as <b>systemd</b> services with auto-restart and graceful
+              recovery; deliberately inject failures to study the full failure
+              chain (edge → tunnel → origin → dependencies) and its error
+              signatures.
+            </li>
+            <li>
+              Serve static assets and user files from <b>Cloudflare R2</b> over
+              a custom CDN domain (free egress, edge caching), and use
+              <b>Workers</b> with KV and Cron Triggers for edge logic, scheduled
+              health checks, and alerting.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="reveal">
+        <h2 class="sec-head">Skills</h2>
+        <div class="skill-row">
+          <div class="skill-key">Languages</div>
+          <div class="skill-val">
+            TypeScript, JavaScript (Node.js, ES6+), Python
           </div>
         </div>
-        <p class="card-desc">
-          Led the full <b>Shopify platform migration</b> for a
-          <b>1.6M-user, 400K-subscription</b> store; designed and built the
-          <b>$150K+/mo payout pipeline</b> (idempotent, reconciled); and as
-          <b>sole DevOps owner</b> cut cloud spend <b>~50%</b>.
-        </p>
-        <div class="chips">
-          <span
-            tabindex="0"
-            data-tip="Cart validation, purchase restrictions, delivery customization, and custom discounts — replacing legacy Scripts and paid third-party apps."
-            >Shopify Functions</span
-          >
-          <span
-            tabindex="0"
-            data-tip="Idempotent transfers keyed per payout with automated reconciliation — no duplicate transfers under retries/failures; $150K+/mo."
-            >Stripe payouts</span
-          >
-          <span
-            tabindex="0"
-            data-tip="Google OAuth SSO on the storefront, AWS access federated via Google (IAM Identity Center), and Google Cloud service accounts powering Sheets-based feed automation."
-            >Google Cloud Console</span
-          >
-          <span
-            tabindex="0"
-            data-tip="Consumed Shopify's GraphQL Admin API + webhooks to mirror customers, orders, products, and discounts into internal systems."
-            >GraphQL Admin API</span
-          >
-          <span
-            tabindex="0"
-            data-tip="Webhook- and queue-driven sync into internal systems for near-real-time analytics and automation."
-            >Event-driven sync</span
-          >
-          <span
-            tabindex="0"
-            data-tip="Custom MCP (Model Context Protocol) servers exposing internal systems — production DB, Shopify, AWS — as structured, read-scoped tools for safe AI-assisted operations, without direct credential exposure."
-            >MCP tooling</span
-          >
-          <span
-            tabindex="0"
-            data-tip="ECS/Fargate, Lambda, Aurora/RDS, ElastiCache, S3/Glacier, SQS/SNS/EventBridge, CloudWatch, Secrets Manager, IAM."
-            >AWS</span
-          >
-          <span
-            tabindex="0"
-            data-tip="Query optimization, indexing strategy, and schema redesign for high-volume, high-concurrency workloads."
-            >MySQL</span
-          >
-          <span
-            tabindex="0"
-            data-tip="Self-hosted open-source BI dashboards on EC2 — replaced a $2K/mo tool (~$24K/yr saved)."
-            >Redash</span
-          >
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-top">
-          <div class="card-name">
-            blue-node <span class="tag">open source</span>
+        <div class="skill-row">
+          <div class="skill-key">Backend &amp; API</div>
+          <div class="skill-val">
+            GraphQL (Apollo), REST, Express 5, WebSockets, DataLoader
           </div>
-          <a
-            class="card-link"
-            href="https://github.com/imkumawat/blue-node"
-            target="_blank"
-            rel="noopener"
-            >github.com/imkumawat/blue-node ↗</a
-          >
         </div>
-        <p class="card-desc">
-          A production-shaped Node.js/TypeScript backend reference — the GraphQL
-          &amp; distributed-systems depth I care about, built end-to-end.
-        </p>
-        <div class="chips">
-          <span
-            tabindex="0"
-            data-tip="Per-request DataLoader batching (order-preserving, behind a request-scoped context) to eliminate resolver N+1."
-            >DataLoader / N+1</span
-          >
-          <span
-            tabindex="0"
-            data-tip="Directive-driven at the schema level: @authenticated, @requireScope, @rateLimit, plus alias-abuse and query-complexity limits."
-            >GraphQL security</span
-          >
-          <span
-            tabindex="0"
-            data-tip="JWT with access/refresh-token rotation and reuse detection, scoped permissions, and per-IP/account lockout."
-            >JWT auth core</span
-          >
-          <span
-            tabindex="0"
-            data-tip="Multi-instance real-time layer: WebSocket connection manager with Redis Pub/Sub fan-out (rooms) across scaled instances."
-            >WebSocket + Redis</span
-          >
-          <span
-            tabindex="0"
-            data-tip="Background jobs via BullMQ plus a standalone SQS worker (email verification, password reset)."
-            >BullMQ + SQS</span
-          >
-          <span
-            tabindex="0"
-            data-tip="MQTT 5 broker client as a resilient shared transport — auto-reconnect and graceful degradation."
-            >MQTT</span
-          >
+        <div class="skill-row">
+          <div class="skill-key">Data</div>
+          <div class="skill-val">
+            MySQL (Aurora), PostgreSQL, MongoDB, Redis
+          </div>
         </div>
-      </div>
+        <div class="skill-row">
+          <div class="skill-key">Messaging &amp; Events</div>
+          <div class="skill-val">
+            AWS SQS/SNS/EventBridge/Kinesis, BullMQ, MQTT 5, event-driven
+            architecture
+          </div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-key">Cloud &amp; DevOps</div>
+          <div class="skill-val">
+            AWS (ECS/Fargate, EKS, EC2, Lightsail, Lambda, API Gateway,
+            Aurora/RDS, DynamoDB, ElastiCache, Redshift, Airflow, S3/Glacier,
+            CloudFront, Route53, WAF, IAM &amp; Identity Center, Cognito,
+            Secrets Manager), Cloudflare (Workers, Pages, Containers, Durable
+            Objects, Queues, Workflows, R2, KV, D1, WAF, Rate Limiting,
+            Turnstile, Zero Trust, DNS, Load Balancing), Azure (Functions,
+            Container Apps, Blob Storage, Front Door), Kubernetes, Docker, CI/CD
+            (GitHub Actions, Azure DevOps, CodePipeline, ECR)
+          </div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-key">Observability</div>
+          <div class="skill-val">
+            CloudWatch, OpenSearch, Sentry, structured logging (pino)
+          </div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-key">Security</div>
+          <div class="skill-val">
+            OWASP Top 10, VAPT (Kali Linux, Burp Suite, OWASP ZAP, Nessus,
+            sqlmap, Metasploit), SAST (SonarCloud), secure coding, refresh-token
+            reuse detection, rate limiting
+          </div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-key">AI &amp; LLM Tooling</div>
+          <div class="skill-val">
+            Model Context Protocol (MCP) — custom remote servers &amp;
+            connectors for Claude, AI-assisted development (Claude Code), prompt
+            engineering
+          </div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-key">Frontend</div>
+          <div class="skill-val">Next.js, React</div>
+        </div>
+      </section>
 
-      <nav class="links" aria-label="Links">
-        <a class="btn primary" href="/resume.html">View résumé →</a>
+      <section class="reveal">
+        <h2 class="sec-head">Education</h2>
+        <div class="edu">
+          <div>
+            <div class="edu-school">Lovely Professional University</div>
+            <div class="edu-deg">
+              B.Tech, Computer Science &amp; Engineering
+            </div>
+          </div>
+          <div class="edu-meta">Jul 2016 – Jun 2020 · Punjab, India</div>
+        </div>
+      </section>
+
+      <nav class="links reveal" aria-label="Links">
+        <a
+          class="btn primary magnetic"
+          href="/Manoj_Kumawat_Resume.pdf"
+          download="Manoj_Kumawat_Resume.pdf"
+          >Download PDF ↓</a
+        >
         <a class="btn" href="mailto:me@imkumawatmanoj.com">Email</a>
         <a
           class="btn"
@@ -870,7 +1671,7 @@
         >
       </nav>
 
-      <div class="status" role="status" aria-label="Site status">
+      <div class="status reveal">
         <span class="pulse" aria-hidden="true"></span>
         <span><strong>200 OK</strong></span>
         <span class="sep">·</span>
@@ -902,9 +1703,7 @@
         setInterval(tick, 1000);
       })();
 
-      // stat count-up — HTML always holds the final values; only animate when the
-      // tab is visible and motion is allowed, with a backstop that guarantees the
-      // final value even if rAF is throttled. Never leaves a stuck "0" on screen.
+      // stat count-up
       (function () {
         var reduce =
           window.matchMedia &&
@@ -938,7 +1737,449 @@
           }
           el.textContent = fmt(0);
           requestAnimationFrame(step);
-          setTimeout(finish, dur + 570); // backstop
+          setTimeout(finish, dur + 570);
+        });
+      })();
+
+      // scroll reveal for resume sections
+      (function () {
+        var reduce =
+          window.matchMedia &&
+          window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        var els = document.querySelectorAll(".reveal");
+        if (reduce || !("IntersectionObserver" in window)) {
+          els.forEach(function (el) {
+            el.classList.add("is-visible");
+          });
+          return;
+        }
+        var io = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (en) {
+              if (en.isIntersecting) {
+                en.target.classList.add("is-visible");
+                io.unobserve(en.target);
+              }
+            });
+          },
+          { rootMargin: "0px 0px -6% 0px", threshold: 0.1 },
+        );
+        els.forEach(function (el) {
+          io.observe(el);
+        });
+      })();
+
+      // ci/cd deploy → live pipeline signature
+      (function () {
+        var reduce =
+          window.matchMedia &&
+          window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+        var STEPS = [
+          { name: "Checkout" },
+          { name: "Install" },
+          { name: "Typecheck" },
+          { name: "Test" },
+          { name: "Build" },
+          { name: "Deploy" },
+        ];
+
+        var stepsEl = document.getElementById("steps");
+        var statusEl = document.getElementById("dep-status");
+        var stTxt = statusEl.querySelector(".t");
+        var buildView = document.getElementById("build-view");
+        var livePipe = document.getElementById("live-pipe");
+        if (!stepsEl) return;
+
+        var marks = [],
+          segs = [];
+        STEPS.forEach(function (s, i) {
+          var step = document.createElement("div");
+          step.className = "dstep";
+          step.innerHTML =
+            '<div class="mark"><span class="dot"></span></div><div class="dlbl">' +
+            s.name +
+            "</div>";
+          stepsEl.appendChild(step);
+          marks.push(step);
+          if (i < STEPS.length - 1) {
+            var seg = document.createElement("div");
+            seg.className = "dseg";
+            stepsEl.appendChild(seg);
+            segs.push(seg);
+          }
+        });
+
+        function startFlow() {
+          var cv = document.querySelector(".flow-cv");
+          if (!cv || !cv.getContext) return;
+          var ctx = cv.getContext("2d");
+          var cs = getComputedStyle(document.documentElement);
+          function v(n, d) {
+            return (cs.getPropertyValue(n) || "").trim() || d;
+          }
+          var ACC = v("--accent", "#2F53F5");
+          var OKC = v("--ok", "#1FA463");
+          var LINE = v("--line", "#E7E9EE");
+          var MUT = v("--muted", "#5B6068");
+          var SURF = v("--surface", "#FFFFFF");
+          var names = [
+            "Client",
+            "Cloudflare",
+            "Origin",
+            "Queue",
+            "Worker",
+            "Aurora",
+          ];
+          var ringColor = [ACC, "#f6821f", ACC, ACC, ACC, ACC];
+          var dpr = Math.min(window.devicePixelRatio || 1, 2);
+          var W = 0,
+            H = 84,
+            xs = [],
+            cy = 36,
+            segs = [];
+
+          function seed() {
+            return {
+              t: Math.random(),
+              sp: 0.16 + Math.random() * 0.22,
+              sz: 1.4 + Math.random() * 1.4,
+              a: 0.45 + Math.random() * 0.45,
+            };
+          }
+          function layout() {
+            W = cv.clientWidth || cv.parentNode.clientWidth || 600;
+            cv.width = Math.floor(W * dpr);
+            cv.height = Math.floor(H * dpr);
+            cv.style.height = H + "px";
+            ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+            var pad = W < 520 ? 23 : 31,
+              n = names.length;
+            xs = [];
+            for (var i = 0; i < n; i++)
+              xs.push(pad + (i * (W - pad * 2)) / (n - 1));
+            if (!segs.length) {
+              var count = W < 520 ? 2 : 3;
+              for (var s = 0; s < n - 1; s++) {
+                var arr = [];
+                for (var k = 0; k < count; k++) arr.push(seed());
+                segs.push(arr);
+              }
+            }
+          }
+          function render(time, dt) {
+            ctx.clearRect(0, 0, W, H);
+            ctx.strokeStyle = LINE;
+            ctx.lineWidth = 1.5;
+            ctx.globalAlpha = 1;
+            ctx.beginPath();
+            ctx.moveTo(xs[0], cy);
+            ctx.lineTo(xs[xs.length - 1], cy);
+            ctx.stroke();
+            for (var s = 0; s < segs.length; s++) {
+              var x1 = xs[s],
+                x2 = xs[s + 1];
+              for (var k = 0; k < segs[s].length; k++) {
+                var p = segs[s][k];
+                if (dt) {
+                  p.t += p.sp * dt;
+                  if (p.t > 1) {
+                    segs[s][k] = seed();
+                    segs[s][k].t = 0;
+                    p = segs[s][k];
+                  }
+                }
+                var px = x1 + (x2 - x1) * p.t;
+                ctx.globalAlpha = p.a * 0.22;
+                ctx.fillStyle = ACC;
+                ctx.beginPath();
+                ctx.arc(px, cy, p.sz * 2.4, 0, 6.2832);
+                ctx.fill();
+                ctx.globalAlpha = p.a;
+                ctx.fillStyle = ACC;
+                ctx.beginPath();
+                ctx.arc(px, cy, p.sz, 0, 6.2832);
+                ctx.fill();
+              }
+            }
+            for (var i = 0; i < xs.length; i++) {
+              var rc = ringColor[i],
+                pulse = dt ? Math.sin(time * 1.6 + i * 0.6) * 0.5 + 0.5 : 0.5;
+              ctx.globalAlpha = 0.16 + pulse * 0.22;
+              ctx.strokeStyle = rc;
+              ctx.lineWidth = 1.5;
+              ctx.beginPath();
+              ctx.arc(xs[i], cy, 12 + pulse * 2, 0, 6.2832);
+              ctx.stroke();
+              ctx.globalAlpha = 0.5;
+              ctx.strokeStyle = rc;
+              ctx.lineWidth = 1.5;
+              ctx.beginPath();
+              ctx.arc(xs[i], cy, 8, 0, 6.2832);
+              ctx.stroke();
+              ctx.globalAlpha = 1;
+              ctx.fillStyle = SURF;
+              ctx.beginPath();
+              ctx.arc(xs[i], cy, 5.5, 0, 6.2832);
+              ctx.fill();
+              ctx.fillStyle = rc;
+              ctx.beginPath();
+              ctx.arc(xs[i], cy, 3, 0, 6.2832);
+              ctx.fill();
+              ctx.globalAlpha = 1;
+              ctx.fillStyle = MUT;
+              ctx.font = "11px 'JetBrains Mono', ui-monospace, monospace";
+              ctx.textAlign = "center";
+              ctx.textBaseline = "top";
+              ctx.fillText(names[i], xs[i], cy + 22);
+            }
+            ctx.globalAlpha = 1;
+          }
+
+          layout();
+          var rt;
+          window.addEventListener("resize", function () {
+            clearTimeout(rt);
+            rt = setTimeout(function () {
+              layout();
+              if (reduce) render(0, 0);
+            }, 150);
+          });
+          if (reduce) {
+            render(0, 0);
+            return;
+          }
+          var t0 = performance.now(),
+            last = t0;
+          (function frame(now) {
+            var dt = Math.min((now - last) / 1000, 0.05);
+            last = now;
+            render((now - t0) / 1000, dt);
+            requestAnimationFrame(frame);
+          })(t0);
+        }
+        function startReqs() {
+          var el = document.getElementById("reqps");
+          if (!el || reduce) return;
+          setInterval(function () {
+            el.textContent = 470 + Math.floor(Math.random() * 90);
+          }, 1300);
+        }
+        function goLive() {
+          livePipe.classList.add("show");
+          stTxt.textContent = "live";
+          var evEl = document.getElementById("ev");
+          if (evEl) evEl.classList.add("show");
+          startReqs();
+          startFlow();
+          if (window.__spineRefresh) window.__spineRefresh();
+        }
+        function succeed() {
+          statusEl.classList.add("done");
+          stTxt.textContent = "succeeded";
+          var msgEl = document.getElementById("dep-msg");
+          if (msgEl) {
+            msgEl.textContent = "deployed to production · 56s";
+            msgEl.classList.add("done");
+          }
+          if (reduce) {
+            goLive();
+            return;
+          }
+          setTimeout(function () {
+            buildView.classList.add("collapsed");
+            setTimeout(function () {
+              buildView.style.display = "none";
+              goLive();
+            }, 420);
+          }, 1100);
+        }
+
+        if (reduce) {
+          marks.forEach(function (m) {
+            m.classList.add("done");
+          });
+          segs.forEach(function (s) {
+            s.classList.add("fill");
+          });
+          succeed();
+          return;
+        }
+
+        var i = 0;
+        function runStep() {
+          if (i >= STEPS.length) {
+            succeed();
+            return;
+          }
+          var m = marks[i];
+          m.classList.add("run");
+          setTimeout(function () {
+            m.classList.remove("run");
+            m.classList.add("done");
+            if (i < segs.length) segs[i].classList.add("fill");
+            i++;
+            setTimeout(runStep, 300);
+          }, 640);
+        }
+        setTimeout(runStep, 850);
+      })();
+
+      // request-trace spine — fill grows with scroll; section nodes light as the
+      // head passes them. Nodes auto-placed at the deploy panel, each section
+      // heading, and the footer, then re-measured on resize. Degrades to a full,
+      // static, fully-lit rail under reduced motion.
+      (function () {
+        var reduce =
+          window.matchMedia &&
+          window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        var main = document.querySelector("main");
+        var spine = document.querySelector(".spine");
+        var fill = document.querySelector(".spine-fill");
+        if (!main || !spine || !fill) return;
+
+        var anchors = [];
+        var hero = document.querySelector(".deploy-wrap");
+        if (hero) anchors.push(hero);
+        document.querySelectorAll(".sec-head").forEach(function (h) {
+          anchors.push(h);
+        });
+        var foot = document.querySelector(".status");
+        if (foot) anchors.push(foot);
+
+        var nodes = anchors.map(function (a) {
+          var n = document.createElement("div");
+          n.className = "spine-node";
+          n.setAttribute("aria-hidden", "true");
+          main.appendChild(n);
+          return { el: n, anchor: a, y: 0 };
+        });
+
+        // exposed so other scripts (the deploy-panel one) can ask the spine to
+        // re-measure after they change layout height at runtime (e.g. when the
+        // build-steps checklist collapses and the live-pipe canvas appears)
+        window.__spineRefresh = function () {
+          measure();
+          update();
+        };
+
+        function measure() {
+          var mTop = main.getBoundingClientRect().top + window.scrollY;
+          nodes.forEach(function (nd) {
+            var y =
+              nd.anchor.getBoundingClientRect().top + window.scrollY - mTop;
+            nd.y = y;
+            nd.el.style.top = y + "px";
+          });
+        }
+        function update() {
+          ticking = false;
+          var mTop = main.getBoundingClientRect().top + window.scrollY;
+          var mH = main.offsetHeight;
+          var f = window.scrollY + window.innerHeight * 0.5 - mTop;
+          if (f < 0) f = 0;
+          if (f > mH) f = mH;
+          fill.style.height = f + "px";
+          nodes.forEach(function (nd) {
+            if (nd.y <= f + 2) nd.el.classList.add("lit");
+            else nd.el.classList.remove("lit");
+          });
+        }
+        var ticking = false;
+        function onScroll() {
+          if (!ticking) {
+            ticking = true;
+            requestAnimationFrame(update);
+          }
+        }
+
+        measure();
+        if (reduce) {
+          fill.style.transition = "none";
+          fill.style.height = main.offsetHeight + "px";
+          nodes.forEach(function (nd) {
+            nd.el.classList.add("lit");
+          });
+          return;
+        }
+        update();
+        window.addEventListener("scroll", onScroll, { passive: true });
+        window.addEventListener("load", function () {
+          measure();
+          update();
+        });
+        var rt;
+        window.addEventListener("resize", function () {
+          clearTimeout(rt);
+          rt = setTimeout(function () {
+            measure();
+            update();
+          }, 150);
+        });
+      })();
+
+      // stat sparklines — inject a faint trend line per tile, then draw them in.
+      (function () {
+        var reduce =
+          window.matchMedia &&
+          window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        var sparks = [
+          "0,26 20,22 40,24 60,16 80,12 100,6",
+          "0,24 20,25 40,20 60,18 80,11 100,8",
+          "0,21 15,25 30,16 45,23 60,13 78,19 100,7",
+          "0,27 25,21 50,23 75,14 100,7",
+          "0,7 25,11 50,10 75,17 100,24",
+        ];
+        var tiles = document.querySelectorAll(".stat");
+        tiles.forEach(function (st, i) {
+          var pts = sparks[i % sparks.length];
+          st.insertAdjacentHTML(
+            "beforeend",
+            '<svg class="spark" viewBox="0 0 100 30" preserveAspectRatio="none" aria-hidden="true"><polyline points="' +
+              pts +
+              '"></polyline></svg>',
+          );
+        });
+        function draw() {
+          tiles.forEach(function (st) {
+            st.classList.add("drawn");
+          });
+        }
+        if (reduce || document.hidden) {
+          draw();
+          return;
+        }
+        setTimeout(draw, 700);
+      })();
+
+      // ===== magnetic — primary CTA + availability pill ease toward the cursor.
+      // Fine pointers with motion allowed only; native cursor is used throughout.
+      (function () {
+        var reduce =
+          window.matchMedia &&
+          window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        var fine =
+          window.matchMedia && window.matchMedia("(pointer: fine)").matches;
+        if (!fine || reduce) return;
+        document.querySelectorAll(".magnetic").forEach(function (el) {
+          // preserve the CSS hover-lift on buttons — an inline transform from
+          // mousemove would otherwise always win over `.btn:hover { transform }`
+          var lift = el.classList.contains("btn") ? " translateY(-1px)" : "";
+          el.addEventListener("mousemove", function (e) {
+            var r = el.getBoundingClientRect();
+            var dx = e.clientX - (r.left + r.width / 2),
+              dy = e.clientY - (r.top + r.height / 2);
+            el.style.transform =
+              "translate(" +
+              (dx * 0.3).toFixed(1) +
+              "px," +
+              (dy * 0.3).toFixed(1) +
+              "px)" +
+              lift;
+          });
+          el.addEventListener("mouseleave", function () {
+            el.style.transform = "";
+          });
         });
       })();
     </script>
