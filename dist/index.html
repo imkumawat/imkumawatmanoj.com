@@ -156,6 +156,7 @@
         margin: 0 auto;
         position: relative;
         padding-left: 44px;
+        padding-right: 44px;
       }
       .hero {
         text-align: center;
@@ -1004,8 +1005,13 @@
         .deploy-top {
           font-size: 10px;
         }
+        .steps {
+          overflow-x: auto;
+          -webkit-overflow-scrolling: touch;
+          padding-bottom: 4px;
+        }
         .dstep {
-          min-width: 46px;
+          min-width: 36px;
         }
         .dstep .dlbl {
           font-size: 9px;
@@ -1169,6 +1175,7 @@
       @media (max-width: 620px) {
         main {
           padding-left: 26px;
+          padding-right: 26px;
         }
         .spine {
           left: 9px;
@@ -1837,6 +1844,7 @@
             H = 84,
             xs = [],
             cy = 36,
+            labelFont = 11,
             segs = [];
 
           function seed() {
@@ -1858,6 +1866,17 @@
             xs = [];
             for (var i = 0; i < n; i++)
               xs.push(pad + (i * (W - pad * 2)) / (n - 1));
+            // shrink the node labels on narrow canvases so adjacent names
+            // (e.g. "Cloudflare" next to "Origin") never overlap — measure
+            // the actual widest label rather than guessing a breakpoint
+            var gap = n > 1 ? xs[1] - xs[0] : W;
+            labelFont = 11;
+            ctx.font = labelFont + "px 'JetBrains Mono', ui-monospace, monospace";
+            var widest = 0;
+            for (var ni = 0; ni < n; ni++)
+              widest = Math.max(widest, ctx.measureText(names[ni]).width);
+            var maxLabelW = gap * 0.92;
+            if (widest > maxLabelW) labelFont = Math.max(7, labelFont * (maxLabelW / widest));
             if (!segs.length) {
               var count = W < 520 ? 2 : 3;
               for (var s = 0; s < n - 1; s++) {
@@ -1928,7 +1947,9 @@
               ctx.fill();
               ctx.globalAlpha = 1;
               ctx.fillStyle = MUT;
-              ctx.font = "11px 'JetBrains Mono', ui-monospace, monospace";
+              ctx.font =
+                labelFont.toFixed(1) +
+                "px 'JetBrains Mono', ui-monospace, monospace";
               ctx.textAlign = "center";
               ctx.textBaseline = "top";
               ctx.fillText(names[i], xs[i], cy + 22);
