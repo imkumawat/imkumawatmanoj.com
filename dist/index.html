@@ -354,6 +354,7 @@
         display: flex;
         align-items: flex-start;
         justify-content: center;
+        width: 100%;
       }
       .dstep {
         display: flex;
@@ -440,8 +441,14 @@
         width: 100%;
       }
 
-      /* live request pipeline (revealed after deploy) */
+      /* live request pipeline (revealed after deploy) — build-view reserves
+         the same height as the canvas it swaps to (.flow-cv, 84px) so the
+         handoff never shifts the panel's height or position */
       #build-view {
+        min-height: 84px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         transition: opacity 0.4s ease;
       }
       #build-view.collapsed {
@@ -1830,7 +1837,7 @@
           window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
         var STEPS = [
-          { name: "Checkout" },
+          { name: "Push" },
           { name: "Install" },
           { name: "Typecheck" },
           { name: "Test" },
