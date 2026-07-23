@@ -994,6 +994,11 @@
         filter: none;
       }
 
+      /* "decrypt" text-scramble — cipher glyphs before text resolves */
+      .scr {
+        color: var(--accent);
+      }
+
       @media (max-width: 620px) {
         body {
           padding: 34px 20px 48px;
@@ -2256,6 +2261,97 @@
             el.style.transform = "";
           });
         });
+      })();
+
+      // "decrypt" text-scramble — ciphertext resolving into real text (a nod
+      // to the security background). Role/tech decrypt on load; section
+      // headings decrypt on scroll. Real text stays in the DOM (aria-label)
+      // and settles fast — SEO/screen readers always see the final text.
+      (function () {
+        var reduce =
+          window.matchMedia &&
+          window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        var GLYPH = "ABCDEFGHJKLMNPQRSTUVWXYZ0123456789#%&/<>=+*!?";
+        function esc(c) {
+          return c === "&"
+            ? "&amp;"
+            : c === "<"
+              ? "&lt;"
+              : c === ">"
+                ? "&gt;"
+                : c;
+        }
+        function decrypt(el, frames) {
+          var text = el.getAttribute("data-text");
+          if (text == null) {
+            text = el.textContent;
+            el.setAttribute("data-text", text);
+          }
+          el.setAttribute("aria-label", text);
+          if (reduce) {
+            el.textContent = text;
+            return;
+          }
+          var total = text.length,
+            f = 0,
+            fr = frames || 30;
+          (function tick() {
+            var settled = Math.floor((f / fr) * total),
+              html = "";
+            for (var i = 0; i < total; i++) {
+              var c = text[i];
+              if (c === " ") {
+                html += " ";
+                continue;
+              }
+              if (i < settled) html += esc(c);
+              else
+                html +=
+                  '<span class="scr">' +
+                  GLYPH[(Math.random() * GLYPH.length) | 0] +
+                  "</span>";
+            }
+            el.innerHTML = html;
+            f++;
+            if (settled < total) requestAnimationFrame(tick);
+            else el.textContent = text;
+          })();
+        }
+        // decrypt on load (staggered, after the hero name finishes assembling)
+        document.querySelectorAll(".role, .tech").forEach(function (el, i) {
+          el.setAttribute("data-text", el.textContent);
+          el.setAttribute("aria-label", el.textContent);
+          if (reduce) return;
+          el.textContent = "";
+          setTimeout(
+            function () {
+              decrypt(el, 34);
+            },
+            700 + i * 180,
+          );
+        });
+        // decrypt on scroll (section headings)
+        var heads = document.querySelectorAll(".sec-head");
+        if (reduce || !("IntersectionObserver" in window)) {
+          heads.forEach(function (el) {
+            decrypt(el);
+          });
+        } else {
+          var io = new IntersectionObserver(
+            function (ents) {
+              ents.forEach(function (en) {
+                if (en.isIntersecting) {
+                  decrypt(en.target, 26);
+                  io.unobserve(en.target);
+                }
+              });
+            },
+            { rootMargin: "0px 0px -6% 0px", threshold: 0.1 },
+          );
+          heads.forEach(function (el) {
+            io.observe(el);
+          });
+        }
       })();
     </script>
   </body>
